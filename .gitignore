@@ -1,0 +1,8 @@
+target/
+
+.vscode/
+.settings/
+.classpath
+.project
+
+src/main/resources/resources-data/

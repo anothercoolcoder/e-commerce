@@ -3,21 +3,60 @@ package uptc.model;
 import java.time.LocalDateTime;
 
 public class Interaccion {
-    private int usuarioId;
-    private int productoId;
-    private TipoInteraccion tipo;
-    private LocalDateTime fecha = LocalDateTime.now();
-    private double peso;
-    public Interaccion() { }
-    public Interaccion(int usuarioId, int productoId, TipoInteraccion tipo) { this.usuarioId=usuarioId; this.productoId=productoId; this.tipo=tipo; }
-    public int getUsuarioId() { return usuarioId; }
-    public void setUsuarioId(int v) { usuarioId=v; }
-    public int getProductoId() { return productoId; }
-    public void setProductoId(int v) { productoId=v; }
-    public TipoInteraccion getTipo() { return tipo; }
-    public void setTipo(TipoInteraccion v) { tipo=v; }
-    public LocalDateTime getFecha() { return fecha; }
-    public void setFecha(LocalDateTime v) { fecha=v; }
-    public double getPeso() { return peso; }
-    public void setPeso(double v) { peso=v; }
+    String id;
+    String usuarioId;
+    String productoId;
+    TipoInteraccion tipo;
+    LocalDateTime fecha;
+    double peso;
+
+    public Interaccion(String id, String usuarioId, String productoId, TipoInteraccion tipo, LocalDateTime fecha,
+            double peso) {
+        this.id = id;
+        this.usuarioId = usuarioId;
+        this.productoId = productoId;
+        this.tipo = tipo;
+        this.fecha = fecha;
+        this.peso = peso;
+    }
+    public Interaccion() {
+    }
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+    public String getUsuarioId() {
+        return usuarioId;
+    }
+    public void setUsuarioId(String usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+    public String getProductoId() {
+        return productoId;
+    }
+    public void setProductoId(String productoId) {
+        this.productoId = productoId;
+    }
+    public TipoInteraccion getTipo() {
+        return tipo;
+    }
+    public void setTipo(TipoInteraccion tipo) {
+        this.tipo = tipo;
+    }
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+    public double getPeso() {
+        return peso;
+    }
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    
 }

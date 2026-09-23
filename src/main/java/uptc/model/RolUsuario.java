@@ -1,3 +1,6 @@
 package uptc.model;
 
-public enum RolUsuario { ADMIN, CLIENTE }
+public enum RolUsuario {
+    ADMIN,
+    CLIENTE
+}
