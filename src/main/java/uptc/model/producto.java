@@ -23,62 +23,80 @@ public class Producto {
         this.etiquetas = etiquetas;
         this.activo = activo;
     }
+
     public Producto() {
     }
+
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
+
     public String getNombre() {
         return nombre;
     }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public String getDescripcion() {
         return descripcion;
     }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
     public double getPrecio() {
         return precio;
     }
+
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
     public double getStock() {
         return stock;
     }
+
     public void setStock(double stock) {
         this.stock = stock;
     }
+
     public String getCategoriaId() {
         return categoriaId;
     }
+
     public void setCategoriaId(String categoriaId) {
         this.categoriaId = categoriaId;
     }
+
     public String getMarca() {
         return marca;
     }
+
     public void setMarca(String marca) {
         this.marca = marca;
     }
+
     public String getEtiquetas() {
         return etiquetas;
     }
+
     public void setEtiquetas(String etiquetas) {
         this.etiquetas = etiquetas;
     }
+
     public boolean isActivo() {
         return activo;
     }
+
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
 
-    
 }
