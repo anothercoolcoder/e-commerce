@@ -97,7 +97,6 @@
                         <exclude>uptc/viewController/**</exclude>
                         <exclude>uptc/utils/ThemeManager.class</exclude>
                         <exclude>uptc/utils/Theme.class</exclude>
-                        <exclude>uptc/utils/ImageLoader.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>

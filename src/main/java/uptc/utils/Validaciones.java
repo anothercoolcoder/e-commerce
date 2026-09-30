@@ -16,39 +16,42 @@ public final class Validaciones {
     /** Valida todos los campos comerciales obligatorios de un producto. */
     public static void producto(Producto producto) throws ValidationException {
         if (producto == null) {
-            throw new ValidationException("El producto es obligatorio");
+            throw new ValidationException(I18n.text("error.productRequired"));
         }
         if (vacio(producto.getId()) || vacio(producto.getSku())) {
-            throw new ValidationException("El ID y el SKU son obligatorios");
+            throw new ValidationException(I18n.text("error.idSku"));
         }
         if (vacio(producto.getNombre())) {
-            throw new ValidationException("El nombre del producto es obligatorio");
+            throw new ValidationException(I18n.text("error.name"));
         }
         if (producto.getPrecio() <= 0) {
-            throw new ValidationException("El precio debe ser mayor que cero");
+            throw new ValidationException(I18n.text("error.price"));
         }
         if (producto.getStock() < 0) {
-            throw new ValidationException("El stock no puede ser negativo");
+            throw new ValidationException(I18n.text("error.stockNegative"));
+        }
+        if (producto.getStock() != Math.floor(producto.getStock())) {
+            throw new ValidationException(I18n.text("error.stockInteger"));
         }
         if (producto.getDescuento() < 0 || producto.getDescuento() > 100) {
-            throw new ValidationException("El descuento debe estar entre 0 y 100");
+            throw new ValidationException(I18n.text("error.discount"));
         }
         if (producto.getCalificacion() < 0 || producto.getCalificacion() > 5) {
-            throw new ValidationException("La calificación debe estar entre 0 y 5");
+            throw new ValidationException(I18n.text("error.rating"));
         }
     }
 
     /** Valida una dirección de correo básica. */
     public static void correo(String correo) throws ValidationException {
         if (vacio(correo) || !EMAIL.matcher(correo).matches()) {
-            throw new ValidationException("Correo inválido");
+            throw new ValidationException(I18n.text("error.email"));
         }
     }
 
     /** Exige que quien realiza la operación tenga el rol ADMIN. */
     public static void admin(Usuario usuario) throws ValidationException {
         if (usuario == null || usuario.getRol() != RolUsuario.ADMIN) {
-            throw new ValidationException("Solo un usuario ADMIN puede realizar esta operación");
+            throw new ValidationException(I18n.text("error.adminOnly"));
         }
     }
 

@@ -59,6 +59,11 @@ public class RecomendacionController {
         return List.copyOf(recommended.subList(0, Math.min(Math.max(limit, 0), recommended.size())));
     }
 
+    /** Perfil en el que el árbol de decisión clasifica al usuario. */
+    public RecommendationProfile profileFor(String userId) {
+        return decisionTree.classify(contextFor(userId));
+    }
+
     /** Devuelve el camino que siguió el árbol de decisión para clasificar al usuario. */
     public String explain(String userId) {
         return decisionTree.explain(contextFor(userId));

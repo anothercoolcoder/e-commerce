@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import uptc.utils.Formato;
+import uptc.utils.I18n;
 
 /** Precio de un producto. Si tiene descuento muestra el precio anterior tachado y el ahorro. */
 public class PriceLabel extends VBox {
@@ -22,7 +23,7 @@ public class PriceLabel extends VBox {
             old.getStyleClass().add("price-old");
             line.getChildren().add(old);
 
-            Label saved = new Label("Ahorras " + Formato.moneda(price - finalPrice));
+            Label saved = new Label(I18n.format("card.saves", Formato.moneda(price - finalPrice)));
             saved.getStyleClass().add("stock-ok");
             getChildren().add(saved);
         }

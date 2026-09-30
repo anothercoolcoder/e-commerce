@@ -21,7 +21,7 @@ import uptc.model.Producto;
  */
 public class ProductoCsvDao {
     private static final String HEADER =
-            "id,sku,nombre,categoria,marca,precio,descuento,stock,calificacion,imagen,descripcion,activo";
+            "id,sku,nombre,categoria,marca,precio,descuento,stock,calificacion,imagen,descripcion,activo,emoji";
 
     private final Path file;
 
@@ -71,7 +71,7 @@ public class ProductoCsvDao {
                         quote(p.getId()), quote(p.getSku()), quote(p.getNombre()), quote(p.getCategoriaId()),
                         quote(p.getMarca()), Double.toString(p.getPrecio()), Double.toString(p.getDescuento()),
                         Double.toString(p.getStock()), Double.toString(p.getCalificacion()), quote(p.getImagen()),
-                        quote(p.getDescripcion()), Boolean.toString(p.isActivo())));
+                        quote(p.getDescripcion()), Boolean.toString(p.isActivo()), quote(p.getEmoji())));
             }
             Files.write(file, lines, StandardCharsets.UTF_8);
         } catch (IOException e) {
@@ -94,7 +94,7 @@ public class ProductoCsvDao {
 
     private Producto toProducto(List<String> values, Map<String, Integer> columns) {
         boolean active = !columns.containsKey("activo") || Boolean.parseBoolean(text(values, columns, "activo"));
-        return new Producto(
+        Producto product = new Producto(
                 text(values, columns, "id"),
                 text(values, columns, "sku"),
                 text(values, columns, "nombre"),
@@ -107,6 +107,8 @@ public class ProductoCsvDao {
                 number(values, columns, "calificacion"),
                 text(values, columns, "imagen"),
                 active);
+        product.setEmoji(text(values, columns, "emoji"));
+        return product;
     }
 
     private String text(List<String> values, Map<String, Integer> columns, String column) {

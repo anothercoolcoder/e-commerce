@@ -1,6 +1,7 @@
 package uptc.controller.tree;
 
 import java.util.Objects;
+import uptc.utils.I18n;
 
 /**
  * Árbol de decisión manual que clasifica las preferencias de un usuario.
@@ -17,6 +18,9 @@ import java.util.Objects;
  *                         ├─ sí → CATEGORIA_PREMIUM
  *                         └─ no → CATEGORIA_ECONOMICA
  * </pre>
+ *
+ * <p>Cada nodo guarda la clave de su pregunta en los archivos de idioma
+ * ({@code tree.q.*}), para que el camino se pueda mostrar en español o inglés.</p>
  */
 public class DecisionTree {
     /** Precio promedio a partir del cual se considera que el usuario busca gama alta. */
@@ -28,19 +32,19 @@ public class DecisionTree {
 
     /** Construye el árbol con las reglas del recomendador. */
     public DecisionTree() {
-        DecisionNode price = DecisionNode.question("¿Su precio promedio supera $500.000?",
+        DecisionNode price = DecisionNode.question("tree.q.price",
                 context -> context.precioPromedio() > PRECIO_PREMIUM,
                 DecisionNode.leaf(RecommendationProfile.CATEGORIA_PREMIUM),
                 DecisionNode.leaf(RecommendationProfile.CATEGORIA_ECONOMICA));
-        DecisionNode purchases = DecisionNode.question("¿Ha hecho 5 compras o más?",
+        DecisionNode purchases = DecisionNode.question("tree.q.purchases",
                 context -> context.compras() >= COMPRAS_FRECUENTE,
                 DecisionNode.leaf(RecommendationProfile.COMPRADOR_FRECUENTE),
                 price);
-        DecisionNode brand = DecisionNode.question("¿Tiene una marca preferida?",
+        DecisionNode brand = DecisionNode.question("tree.q.brand",
                 context -> !context.marca().isBlank(),
                 DecisionNode.leaf(RecommendationProfile.MARCA_PREFERIDA),
                 purchases);
-        root = DecisionNode.question("¿Tiene historial?",
+        root = DecisionNode.question("tree.q.history",
                 context -> !context.categoria().isBlank(),
                 brand,
                 DecisionNode.leaf(RecommendationProfile.EXPLORADOR_NUEVO));
@@ -57,8 +61,8 @@ public class DecisionTree {
     }
 
     /**
-     * Devuelve el camino recorrido en texto, por ejemplo:
-     * "¿Tiene historial? sí → ¿Tiene una marca preferida? no → ... → COMPRADOR_FRECUENTE".
+     * Devuelve, en el idioma activo, el camino recorrido. Por ejemplo:
+     * "¿Tiene historial? sí → ¿Tiene una marca preferida? no → ... → comprador frecuente".
      */
     public String explain(DecisionContext context) {
         Objects.requireNonNull(context, "El contexto es obligatorio");
@@ -66,9 +70,12 @@ public class DecisionTree {
         DecisionNode node = root;
         while (!node.isLeaf()) {
             boolean answer = node.answer(context);
-            path.append(node.getQuestion()).append(answer ? " sí → " : " no → ");
+            path.append(I18n.text(node.getQuestion()))
+                    .append(' ')
+                    .append(I18n.text(answer ? "tree.yes" : "tree.no"))
+                    .append(" → ");
             node = node.next(answer);
         }
-        return path.append(node.getProfile()).toString();
+        return path.append(I18n.text("profile." + node.getProfile())).toString();
     }
 }

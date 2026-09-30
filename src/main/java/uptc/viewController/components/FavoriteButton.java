@@ -4,6 +4,7 @@ import javafx.animation.ScaleTransition;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
+import uptc.utils.I18n;
 
 /** Botón de corazón que se marca y desmarca con una pequeña animación. */
 public class FavoriteButton extends Button {
@@ -13,7 +14,7 @@ public class FavoriteButton extends Button {
     public FavoriteButton(Runnable action) {
         super("♡");
         getStyleClass().add("btn-icon");
-        setTooltip(new Tooltip("Agregar a favoritos"));
+        setTooltip(new Tooltip(I18n.text("card.favorite")));
         setOnAction(event -> {
             favorite = !favorite;
             setText(favorite ? "♥" : "♡");

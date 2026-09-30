@@ -1,933 +1,727 @@
-[
-  {
-    "id": "P00001",
-    "usuarioId": "u1",
-    "fecha": "2026-07-28",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 58,
-        "cantidad": 1,
-        "precioUnitario": 1648150
-      },
-      {
-        "productoId": 54,
-        "cantidad": 1,
-        "precioUnitario": 3327000
-      }
-    ],
-    "total": 4975150
-  },
-  {
-    "id": "P00002",
-    "usuarioId": "u1",
-    "fecha": "2026-04-17",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 6,
-        "cantidad": 1,
-        "precioUnitario": 151000
-      }
-    ],
-    "total": 151000
-  },
-  {
-    "id": "P00003",
-    "usuarioId": "u1",
-    "fecha": "2026-07-27",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 30,
-        "cantidad": 1,
-        "precioUnitario": 1083000
-      },
-      {
-        "productoId": 7,
-        "cantidad": 2,
-        "precioUnitario": 105600
-      }
-    ],
-    "total": 1294200
-  },
-  {
-    "id": "P00004",
-    "usuarioId": "u1",
-    "fecha": "2025-12-15",
-    "estado": "PROCESANDO",
-    "items": [
-      {
-        "productoId": 23,
-        "cantidad": 1,
-        "precioUnitario": 6825000
-      },
-      {
-        "productoId": 39,
-        "cantidad": 1,
-        "precioUnitario": 1393200
-      },
-      {
-        "productoId": 60,
-        "cantidad": 2,
-        "precioUnitario": 270900
-      }
-    ],
-    "total": 8760000
-  },
-  {
-    "id": "P00005",
-    "usuarioId": "u1",
-    "fecha": "2025-10-31",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 42,
-        "cantidad": 2,
-        "precioUnitario": 4524300
-      }
-    ],
-    "total": 9048600
-  },
-  {
-    "id": "P00006",
-    "usuarioId": "u1",
-    "fecha": "2026-05-27",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 20,
-        "cantidad": 1,
-        "precioUnitario": 193500
-      },
-      {
-        "productoId": 18,
-        "cantidad": 2,
-        "precioUnitario": 139400
-      },
-      {
-        "productoId": 30,
-        "cantidad": 2,
-        "precioUnitario": 1083000
-      }
-    ],
-    "total": 2638300
-  },
-  {
-    "id": "P00007",
-    "usuarioId": "u1",
-    "fecha": "2026-01-25",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 3,
-        "cantidad": 1,
-        "precioUnitario": 578000
-      },
-      {
-        "productoId": 55,
-        "cantidad": 2,
-        "precioUnitario": 909300
-      }
-    ],
-    "total": 2396600
-  },
-  {
-    "id": "P00008",
-    "usuarioId": "u1",
-    "fecha": "2026-04-22",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 20,
-        "cantidad": 1,
-        "precioUnitario": 193500
-      }
-    ],
-    "total": 193500
-  },
-  {
-    "id": "P00009",
-    "usuarioId": "u1",
-    "fecha": "2026-07-29",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 13,
-        "cantidad": 1,
-        "precioUnitario": 244500
-      },
-      {
-        "productoId": 17,
-        "cantidad": 1,
-        "precioUnitario": 231000
-      },
-      {
-        "productoId": 8,
-        "cantidad": 2,
-        "precioUnitario": 214200
-      }
-    ],
-    "total": 903900
-  },
-  {
-    "id": "P00010",
-    "usuarioId": "u1",
-    "fecha": "2025-11-18",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 45,
-        "cantidad": 1,
-        "precioUnitario": 490000
-      },
-      {
-        "productoId": 50,
-        "cantidad": 2,
-        "precioUnitario": 453050
-      }
-    ],
-    "total": 1396100
-  },
-  {
-    "id": "P00011",
-    "usuarioId": "u1",
-    "fecha": "2026-06-24",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 51,
-        "cantidad": 2,
-        "precioUnitario": 237600
-      }
-    ],
-    "total": 475200
-  },
-  {
-    "id": "P00012",
-    "usuarioId": "u1",
-    "fecha": "2026-08-14",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 35,
-        "cantidad": 2,
-        "precioUnitario": 52500
-      },
-      {
-        "productoId": 16,
-        "cantidad": 1,
-        "precioUnitario": 166000
-      }
-    ],
-    "total": 271000
-  },
-  {
-    "id": "P00013",
-    "usuarioId": "u2",
-    "fecha": "2026-01-27",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 16,
-        "cantidad": 2,
-        "precioUnitario": 166000
-      }
-    ],
-    "total": 332000
-  },
-  {
-    "id": "P00014",
-    "usuarioId": "u2",
-    "fecha": "2026-05-04",
-    "estado": "PROCESANDO",
-    "items": [
-      {
-        "productoId": 9,
-        "cantidad": 2,
-        "precioUnitario": 25600
-      },
-      {
-        "productoId": 159,
-        "cantidad": 2,
-        "precioUnitario": 172000
-      },
-      {
-        "productoId": 112,
-        "cantidad": 1,
-        "precioUnitario": 57800
-      }
-    ],
-    "total": 453000
-  },
-  {
-    "id": "P00015",
-    "usuarioId": "u2",
-    "fecha": "2026-06-12",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 3,
-        "cantidad": 2,
-        "precioUnitario": 578000
-      },
-      {
-        "productoId": 109,
-        "cantidad": 2,
-        "precioUnitario": 450000
-      }
-    ],
-    "total": 2056000
-  },
-  {
-    "id": "P00016",
-    "usuarioId": "u2",
-    "fecha": "2025-11-07",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 118,
-        "cantidad": 2,
-        "precioUnitario": 201600
-      },
-      {
-        "productoId": 144,
-        "cantidad": 1,
-        "precioUnitario": 75650
-      },
-      {
-        "productoId": 142,
-        "cantidad": 1,
-        "precioUnitario": 113000
-      }
-    ],
-    "total": 591850
-  },
-  {
-    "id": "P00017",
-    "usuarioId": "u2",
-    "fecha": "2026-01-31",
-    "estado": "PROCESANDO",
-    "items": [
-      {
-        "productoId": 154,
-        "cantidad": 2,
-        "precioUnitario": 460000
-      }
-    ],
-    "total": 920000
-  },
-  {
-    "id": "P00018",
-    "usuarioId": "u2",
-    "fecha": "2026-04-18",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 141,
-        "cantidad": 1,
-        "precioUnitario": 238000
-      },
-      {
-        "productoId": 116,
-        "cantidad": 2,
-        "precioUnitario": 102000
-      },
-      {
-        "productoId": 7,
-        "cantidad": 2,
-        "precioUnitario": 105600
-      }
-    ],
-    "total": 653200
-  },
-  {
-    "id": "P00019",
-    "usuarioId": "u2",
-    "fecha": "2026-03-10",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 143,
-        "cantidad": 1,
-        "precioUnitario": 786800
-      },
-      {
-        "productoId": 2,
-        "cantidad": 1,
-        "precioUnitario": 283000
-      },
-      {
-        "productoId": 106,
-        "cantidad": 1,
-        "precioUnitario": 174250
-      }
-    ],
-    "total": 1244050
-  },
-  {
-    "id": "P00020",
-    "usuarioId": "u2",
-    "fecha": "2026-09-25",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 10,
-        "cantidad": 1,
-        "precioUnitario": 194000
-      }
-    ],
-    "total": 194000
-  },
-  {
-    "id": "P00021",
-    "usuarioId": "u2",
-    "fecha": "2026-05-13",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 4,
-        "cantidad": 2,
-        "precioUnitario": 363000
-      },
-      {
-        "productoId": 115,
-        "cantidad": 2,
-        "precioUnitario": 119850
-      },
-      {
-        "productoId": 157,
-        "cantidad": 2,
-        "precioUnitario": 108000
-      }
-    ],
-    "total": 1181700
-  },
-  {
-    "id": "P00022",
-    "usuarioId": "u2",
-    "fecha": "2025-11-02",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 106,
-        "cantidad": 2,
-        "precioUnitario": 174250
-      }
-    ],
-    "total": 348500
-  },
-  {
-    "id": "P00023",
-    "usuarioId": "u2",
-    "fecha": "2026-02-23",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 141,
-        "cantidad": 2,
-        "precioUnitario": 238000
-      },
-      {
-        "productoId": 119,
-        "cantidad": 1,
-        "precioUnitario": 329700
-      },
-      {
-        "productoId": 160,
-        "cantidad": 2,
-        "precioUnitario": 114750
-      }
-    ],
-    "total": 1035200
-  },
-  {
-    "id": "P00024",
-    "usuarioId": "u2",
-    "fecha": "2026-04-17",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 153,
-        "cantidad": 1,
-        "precioUnitario": 81750
-      },
-      {
-        "productoId": 145,
-        "cantidad": 2,
-        "precioUnitario": 35250
-      }
-    ],
-    "total": 152250
-  },
-  {
-    "id": "P00025",
-    "usuarioId": "u2",
-    "fecha": "2026-02-13",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 113,
-        "cantidad": 1,
-        "precioUnitario": 95400
-      }
-    ],
-    "total": 95400
-  },
-  {
-    "id": "P00026",
-    "usuarioId": "u3",
-    "fecha": "2026-02-17",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 82,
-        "cantidad": 2,
-        "precioUnitario": 128250
-      }
-    ],
-    "total": 256500
-  },
-  {
-    "id": "P00027",
-    "usuarioId": "u3",
-    "fecha": "2026-07-18",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 82,
-        "cantidad": 1,
-        "precioUnitario": 128250
-      },
-      {
-        "productoId": 168,
-        "cantidad": 2,
-        "precioUnitario": 34850
-      },
-      {
-        "productoId": 168,
-        "cantidad": 2,
-        "precioUnitario": 34850
-      }
-    ],
-    "total": 267650
-  },
-  {
-    "id": "P00028",
-    "usuarioId": "u3",
-    "fecha": "2026-08-29",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 230,
-        "cantidad": 2,
-        "precioUnitario": 152000
-      }
-    ],
-    "total": 304000
-  },
-  {
-    "id": "P00029",
-    "usuarioId": "u3",
-    "fecha": "2026-07-15",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 94,
-        "cantidad": 2,
-        "precioUnitario": 66400
-      },
-      {
-        "productoId": 72,
-        "cantidad": 2,
-        "precioUnitario": 818300
-      },
-      {
-        "productoId": 174,
-        "cantidad": 2,
-        "precioUnitario": 154800
-      }
-    ],
-    "total": 2079000
-  },
-  {
-    "id": "P00030",
-    "usuarioId": "u3",
-    "fecha": "2026-07-18",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 98,
-        "cantidad": 2,
-        "precioUnitario": 88000
-      },
-      {
-        "productoId": 88,
-        "cantidad": 2,
-        "precioUnitario": 257550
-      }
-    ],
-    "total": 691100
-  },
-  {
-    "id": "P00031",
-    "usuarioId": "u3",
-    "fecha": "2026-03-15",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 234,
-        "cantidad": 1,
-        "precioUnitario": 27000
-      }
-    ],
-    "total": 27000
-  },
-  {
-    "id": "P00032",
-    "usuarioId": "u3",
-    "fecha": "2025-12-29",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 91,
-        "cantidad": 1,
-        "precioUnitario": 199500
-      },
-      {
-        "productoId": 232,
-        "cantidad": 1,
-        "precioUnitario": 91700
-      }
-    ],
-    "total": 291200
-  },
-  {
-    "id": "P00033",
-    "usuarioId": "u3",
-    "fecha": "2026-08-23",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 173,
-        "cantidad": 1,
-        "precioUnitario": 152150
-      }
-    ],
-    "total": 152150
-  },
-  {
-    "id": "P00034",
-    "usuarioId": "u3",
-    "fecha": "2026-01-27",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 96,
-        "cantidad": 1,
-        "precioUnitario": 158900
-      },
-      {
-        "productoId": 170,
-        "cantidad": 1,
-        "precioUnitario": 63750
-      },
-      {
-        "productoId": 87,
-        "cantidad": 1,
-        "precioUnitario": 199500
-      }
-    ],
-    "total": 422150
-  },
-  {
-    "id": "P00035",
-    "usuarioId": "u3",
-    "fecha": "2026-04-25",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 93,
-        "cantidad": 1,
-        "precioUnitario": 474300
-      },
-      {
-        "productoId": 170,
-        "cantidad": 2,
-        "precioUnitario": 63750
-      },
-      {
-        "productoId": 238,
-        "cantidad": 2,
-        "precioUnitario": 92000
-      }
-    ],
-    "total": 785800
-  },
-  {
-    "id": "P00036",
-    "usuarioId": "u3",
-    "fecha": "2026-03-24",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 235,
-        "cantidad": 1,
-        "precioUnitario": 115200
-      },
-      {
-        "productoId": 231,
-        "cantidad": 1,
-        "precioUnitario": 186200
-      }
-    ],
-    "total": 301400
-  },
-  {
-    "id": "P00037",
-    "usuarioId": "u3",
-    "fecha": "2025-12-20",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 79,
-        "cantidad": 1,
-        "precioUnitario": 977250
-      },
-      {
-        "productoId": 81,
-        "cantidad": 2,
-        "precioUnitario": 144000
-      }
-    ],
-    "total": 1265250
-  },
-  {
-    "id": "P00038",
-    "usuarioId": "u3",
-    "fecha": "2026-01-17",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 230,
-        "cantidad": 1,
-        "precioUnitario": 152000
-      },
-      {
-        "productoId": 91,
-        "cantidad": 1,
-        "precioUnitario": 199500
-      },
-      {
-        "productoId": 239,
-        "cantidad": 1,
-        "precioUnitario": 214900
-      }
-    ],
-    "total": 566400
-  },
-  {
-    "id": "P00039",
-    "usuarioId": "u4",
-    "fecha": "2026-04-15",
-    "estado": "PROCESANDO",
-    "items": [
-      {
-        "productoId": 191,
-        "cantidad": 2,
-        "precioUnitario": 65000
-      }
-    ],
-    "total": 130000
-  },
-  {
-    "id": "P00040",
-    "usuarioId": "u4",
-    "fecha": "2026-08-17",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 15,
-        "cantidad": 2,
-        "precioUnitario": 393000
-      },
-      {
-        "productoId": 192,
-        "cantidad": 2,
-        "precioUnitario": 53250
-      },
-      {
-        "productoId": 6,
-        "cantidad": 2,
-        "precioUnitario": 151000
-      }
-    ],
-    "total": 1194500
-  },
-  {
-    "id": "P00041",
-    "usuarioId": "u4",
-    "fecha": "2025-11-09",
-    "estado": "ENVIADO",
-    "items": [
-      {
-        "productoId": 183,
-        "cantidad": 1,
-        "precioUnitario": 43000
-      },
-      {
-        "productoId": 5,
-        "cantidad": 2,
-        "precioUnitario": 134400
-      }
-    ],
-    "total": 311800
-  },
-  {
-    "id": "P00042",
-    "usuarioId": "u4",
-    "fecha": "2026-05-14",
-    "estado": "PROCESANDO",
-    "items": [
-      {
-        "productoId": 11,
-        "cantidad": 2,
-        "precioUnitario": 71100
-      },
-      {
-        "productoId": 183,
-        "cantidad": 1,
-        "precioUnitario": 43000
-      },
-      {
-        "productoId": 15,
-        "cantidad": 2,
-        "precioUnitario": 393000
-      }
-    ],
-    "total": 971200
-  },
-  {
-    "id": "P00043",
-    "usuarioId": "u4",
-    "fecha": "2026-02-12",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 186,
-        "cantidad": 2,
-        "precioUnitario": 119250
-      }
-    ],
-    "total": 238500
-  },
-  {
-    "id": "P00044",
-    "usuarioId": "u4",
-    "fecha": "2026-03-16",
-    "estado": "PROCESANDO",
-    "items": [
-      {
-        "productoId": 214,
-        "cantidad": 1,
-        "precioUnitario": 75600
-      },
-      {
-        "productoId": 183,
-        "cantidad": 2,
-        "precioUnitario": 43000
-      },
-      {
-        "productoId": 203,
-        "cantidad": 2,
-        "precioUnitario": 73000
-      }
-    ],
-    "total": 307600
-  },
-  {
-    "id": "P00045",
-    "usuarioId": "u4",
-    "fecha": "2025-12-11",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 13,
-        "cantidad": 1,
-        "precioUnitario": 244500
-      },
-      {
-        "productoId": 218,
-        "cantidad": 1,
-        "precioUnitario": 107100
-      }
-    ],
-    "total": 351600
-  },
-  {
-    "id": "P00046",
-    "usuarioId": "u4",
-    "fecha": "2026-07-20",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 213,
-        "cantidad": 1,
-        "precioUnitario": 114000
-      }
-    ],
-    "total": 114000
-  },
-  {
-    "id": "P00047",
-    "usuarioId": "u4",
-    "fecha": "2026-05-11",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 16,
-        "cantidad": 1,
-        "precioUnitario": 166000
-      },
-      {
-        "productoId": 186,
-        "cantidad": 2,
-        "precioUnitario": 119250
-      }
-    ],
-    "total": 404500
-  },
-  {
-    "id": "P00048",
-    "usuarioId": "u4",
-    "fecha": "2025-11-29",
-    "estado": "ENTREGADO",
-    "items": [
-      {
-        "productoId": 3,
-        "cantidad": 2,
-        "precioUnitario": 578000
-      },
-      {
-        "productoId": 8,
-        "cantidad": 2,
-        "precioUnitario": 214200
-      }
-    ],
-    "total": 1584400
-  },
-  {
-    "id": "P00049",
-    "usuarioId": "u4",
-    "fecha": "2026-04-27",
-    "estado": "PROCESANDO",
-    "items": [
-      {
-        "productoId": 4,
-        "cantidad": 1,
-        "precioUnitario": 363000
-      }
-    ],
-    "total": 363000
-  }
-]
+[ {
+  "id" : "P00001",
+  "usuarioId" : "u1",
+  "fecha" : "2026-07-28T00:00:00",
+  "detalles" : [ {
+    "productoId" : "58",
+    "cantidad" : 1,
+    "precioUnitario" : 1648150.0
+  }, {
+    "productoId" : "54",
+    "cantidad" : 1,
+    "precioUnitario" : 3327000.0
+  } ],
+  "total" : 4975150.0
+}, {
+  "id" : "P00002",
+  "usuarioId" : "u1",
+  "fecha" : "2026-04-17T00:00:00",
+  "detalles" : [ {
+    "productoId" : "6",
+    "cantidad" : 1,
+    "precioUnitario" : 151000.0
+  } ],
+  "total" : 151000.0
+}, {
+  "id" : "P00003",
+  "usuarioId" : "u1",
+  "fecha" : "2026-07-27T00:00:00",
+  "detalles" : [ {
+    "productoId" : "30",
+    "cantidad" : 1,
+    "precioUnitario" : 1083000.0
+  }, {
+    "productoId" : "7",
+    "cantidad" : 2,
+    "precioUnitario" : 105600.0
+  } ],
+  "total" : 1294200.0
+}, {
+  "id" : "P00004",
+  "usuarioId" : "u1",
+  "fecha" : "2025-12-15T00:00:00",
+  "detalles" : [ {
+    "productoId" : "23",
+    "cantidad" : 1,
+    "precioUnitario" : 6825000.0
+  }, {
+    "productoId" : "39",
+    "cantidad" : 1,
+    "precioUnitario" : 1393200.0
+  }, {
+    "productoId" : "60",
+    "cantidad" : 2,
+    "precioUnitario" : 270900.0
+  } ],
+  "total" : 8760000.0
+}, {
+  "id" : "P00005",
+  "usuarioId" : "u1",
+  "fecha" : "2025-10-31T00:00:00",
+  "detalles" : [ {
+    "productoId" : "42",
+    "cantidad" : 2,
+    "precioUnitario" : 4524300.0
+  } ],
+  "total" : 9048600.0
+}, {
+  "id" : "P00006",
+  "usuarioId" : "u1",
+  "fecha" : "2026-05-27T00:00:00",
+  "detalles" : [ {
+    "productoId" : "20",
+    "cantidad" : 1,
+    "precioUnitario" : 193500.0
+  }, {
+    "productoId" : "18",
+    "cantidad" : 2,
+    "precioUnitario" : 139400.0
+  }, {
+    "productoId" : "30",
+    "cantidad" : 2,
+    "precioUnitario" : 1083000.0
+  } ],
+  "total" : 2638300.0
+}, {
+  "id" : "P00007",
+  "usuarioId" : "u1",
+  "fecha" : "2026-01-25T00:00:00",
+  "detalles" : [ {
+    "productoId" : "3",
+    "cantidad" : 1,
+    "precioUnitario" : 578000.0
+  }, {
+    "productoId" : "55",
+    "cantidad" : 2,
+    "precioUnitario" : 909300.0
+  } ],
+  "total" : 2396600.0
+}, {
+  "id" : "P00008",
+  "usuarioId" : "u1",
+  "fecha" : "2026-04-22T00:00:00",
+  "detalles" : [ {
+    "productoId" : "20",
+    "cantidad" : 1,
+    "precioUnitario" : 193500.0
+  } ],
+  "total" : 193500.0
+}, {
+  "id" : "P00009",
+  "usuarioId" : "u1",
+  "fecha" : "2026-07-29T00:00:00",
+  "detalles" : [ {
+    "productoId" : "13",
+    "cantidad" : 1,
+    "precioUnitario" : 244500.0
+  }, {
+    "productoId" : "17",
+    "cantidad" : 1,
+    "precioUnitario" : 231000.0
+  }, {
+    "productoId" : "8",
+    "cantidad" : 2,
+    "precioUnitario" : 214200.0
+  } ],
+  "total" : 903900.0
+}, {
+  "id" : "P00010",
+  "usuarioId" : "u1",
+  "fecha" : "2025-11-18T00:00:00",
+  "detalles" : [ {
+    "productoId" : "45",
+    "cantidad" : 1,
+    "precioUnitario" : 490000.0
+  }, {
+    "productoId" : "50",
+    "cantidad" : 2,
+    "precioUnitario" : 453050.0
+  } ],
+  "total" : 1396100.0
+}, {
+  "id" : "P00011",
+  "usuarioId" : "u1",
+  "fecha" : "2026-06-24T00:00:00",
+  "detalles" : [ {
+    "productoId" : "51",
+    "cantidad" : 2,
+    "precioUnitario" : 237600.0
+  } ],
+  "total" : 475200.0
+}, {
+  "id" : "P00012",
+  "usuarioId" : "u1",
+  "fecha" : "2026-08-14T00:00:00",
+  "detalles" : [ {
+    "productoId" : "35",
+    "cantidad" : 2,
+    "precioUnitario" : 52500.0
+  }, {
+    "productoId" : "16",
+    "cantidad" : 1,
+    "precioUnitario" : 166000.0
+  } ],
+  "total" : 271000.0
+}, {
+  "id" : "P00013",
+  "usuarioId" : "u2",
+  "fecha" : "2026-01-27T00:00:00",
+  "detalles" : [ {
+    "productoId" : "16",
+    "cantidad" : 2,
+    "precioUnitario" : 166000.0
+  } ],
+  "total" : 332000.0
+}, {
+  "id" : "P00014",
+  "usuarioId" : "u2",
+  "fecha" : "2026-05-04T00:00:00",
+  "detalles" : [ {
+    "productoId" : "9",
+    "cantidad" : 2,
+    "precioUnitario" : 25600.0
+  }, {
+    "productoId" : "159",
+    "cantidad" : 2,
+    "precioUnitario" : 172000.0
+  }, {
+    "productoId" : "112",
+    "cantidad" : 1,
+    "precioUnitario" : 57800.0
+  } ],
+  "total" : 453000.0
+}, {
+  "id" : "P00015",
+  "usuarioId" : "u2",
+  "fecha" : "2026-06-12T00:00:00",
+  "detalles" : [ {
+    "productoId" : "3",
+    "cantidad" : 2,
+    "precioUnitario" : 578000.0
+  }, {
+    "productoId" : "109",
+    "cantidad" : 2,
+    "precioUnitario" : 450000.0
+  } ],
+  "total" : 2056000.0
+}, {
+  "id" : "P00016",
+  "usuarioId" : "u2",
+  "fecha" : "2025-11-07T00:00:00",
+  "detalles" : [ {
+    "productoId" : "118",
+    "cantidad" : 2,
+    "precioUnitario" : 201600.0
+  }, {
+    "productoId" : "144",
+    "cantidad" : 1,
+    "precioUnitario" : 75650.0
+  }, {
+    "productoId" : "142",
+    "cantidad" : 1,
+    "precioUnitario" : 113000.0
+  } ],
+  "total" : 591850.0
+}, {
+  "id" : "P00017",
+  "usuarioId" : "u2",
+  "fecha" : "2026-01-31T00:00:00",
+  "detalles" : [ {
+    "productoId" : "154",
+    "cantidad" : 2,
+    "precioUnitario" : 460000.0
+  } ],
+  "total" : 920000.0
+}, {
+  "id" : "P00018",
+  "usuarioId" : "u2",
+  "fecha" : "2026-04-18T00:00:00",
+  "detalles" : [ {
+    "productoId" : "141",
+    "cantidad" : 1,
+    "precioUnitario" : 238000.0
+  }, {
+    "productoId" : "116",
+    "cantidad" : 2,
+    "precioUnitario" : 102000.0
+  }, {
+    "productoId" : "7",
+    "cantidad" : 2,
+    "precioUnitario" : 105600.0
+  } ],
+  "total" : 653200.0
+}, {
+  "id" : "P00019",
+  "usuarioId" : "u2",
+  "fecha" : "2026-03-10T00:00:00",
+  "detalles" : [ {
+    "productoId" : "143",
+    "cantidad" : 1,
+    "precioUnitario" : 786800.0
+  }, {
+    "productoId" : "2",
+    "cantidad" : 1,
+    "precioUnitario" : 283000.0
+  }, {
+    "productoId" : "106",
+    "cantidad" : 1,
+    "precioUnitario" : 174250.0
+  } ],
+  "total" : 1244050.0
+}, {
+  "id" : "P00020",
+  "usuarioId" : "u2",
+  "fecha" : "2026-09-25T00:00:00",
+  "detalles" : [ {
+    "productoId" : "10",
+    "cantidad" : 1,
+    "precioUnitario" : 194000.0
+  } ],
+  "total" : 194000.0
+}, {
+  "id" : "P00021",
+  "usuarioId" : "u2",
+  "fecha" : "2026-05-13T00:00:00",
+  "detalles" : [ {
+    "productoId" : "4",
+    "cantidad" : 2,
+    "precioUnitario" : 363000.0
+  }, {
+    "productoId" : "115",
+    "cantidad" : 2,
+    "precioUnitario" : 119850.0
+  }, {
+    "productoId" : "157",
+    "cantidad" : 2,
+    "precioUnitario" : 108000.0
+  } ],
+  "total" : 1181700.0
+}, {
+  "id" : "P00022",
+  "usuarioId" : "u2",
+  "fecha" : "2025-11-02T00:00:00",
+  "detalles" : [ {
+    "productoId" : "106",
+    "cantidad" : 2,
+    "precioUnitario" : 174250.0
+  } ],
+  "total" : 348500.0
+}, {
+  "id" : "P00023",
+  "usuarioId" : "u2",
+  "fecha" : "2026-02-23T00:00:00",
+  "detalles" : [ {
+    "productoId" : "141",
+    "cantidad" : 2,
+    "precioUnitario" : 238000.0
+  }, {
+    "productoId" : "119",
+    "cantidad" : 1,
+    "precioUnitario" : 329700.0
+  }, {
+    "productoId" : "160",
+    "cantidad" : 2,
+    "precioUnitario" : 114750.0
+  } ],
+  "total" : 1035200.0
+}, {
+  "id" : "P00024",
+  "usuarioId" : "u2",
+  "fecha" : "2026-04-17T00:00:00",
+  "detalles" : [ {
+    "productoId" : "153",
+    "cantidad" : 1,
+    "precioUnitario" : 81750.0
+  }, {
+    "productoId" : "145",
+    "cantidad" : 2,
+    "precioUnitario" : 35250.0
+  } ],
+  "total" : 152250.0
+}, {
+  "id" : "P00025",
+  "usuarioId" : "u2",
+  "fecha" : "2026-02-13T00:00:00",
+  "detalles" : [ {
+    "productoId" : "113",
+    "cantidad" : 1,
+    "precioUnitario" : 95400.0
+  } ],
+  "total" : 95400.0
+}, {
+  "id" : "P00026",
+  "usuarioId" : "u3",
+  "fecha" : "2026-02-17T00:00:00",
+  "detalles" : [ {
+    "productoId" : "82",
+    "cantidad" : 2,
+    "precioUnitario" : 128250.0
+  } ],
+  "total" : 256500.0
+}, {
+  "id" : "P00027",
+  "usuarioId" : "u3",
+  "fecha" : "2026-07-18T00:00:00",
+  "detalles" : [ {
+    "productoId" : "82",
+    "cantidad" : 1,
+    "precioUnitario" : 128250.0
+  }, {
+    "productoId" : "168",
+    "cantidad" : 2,
+    "precioUnitario" : 34850.0
+  }, {
+    "productoId" : "168",
+    "cantidad" : 2,
+    "precioUnitario" : 34850.0
+  } ],
+  "total" : 267650.0
+}, {
+  "id" : "P00028",
+  "usuarioId" : "u3",
+  "fecha" : "2026-08-29T00:00:00",
+  "detalles" : [ {
+    "productoId" : "230",
+    "cantidad" : 2,
+    "precioUnitario" : 152000.0
+  } ],
+  "total" : 304000.0
+}, {
+  "id" : "P00029",
+  "usuarioId" : "u3",
+  "fecha" : "2026-07-15T00:00:00",
+  "detalles" : [ {
+    "productoId" : "94",
+    "cantidad" : 2,
+    "precioUnitario" : 66400.0
+  }, {
+    "productoId" : "72",
+    "cantidad" : 2,
+    "precioUnitario" : 818300.0
+  }, {
+    "productoId" : "174",
+    "cantidad" : 2,
+    "precioUnitario" : 154800.0
+  } ],
+  "total" : 2079000.0
+}, {
+  "id" : "P00030",
+  "usuarioId" : "u3",
+  "fecha" : "2026-07-18T00:00:00",
+  "detalles" : [ {
+    "productoId" : "98",
+    "cantidad" : 2,
+    "precioUnitario" : 88000.0
+  }, {
+    "productoId" : "88",
+    "cantidad" : 2,
+    "precioUnitario" : 257550.0
+  } ],
+  "total" : 691100.0
+}, {
+  "id" : "P00031",
+  "usuarioId" : "u3",
+  "fecha" : "2026-03-15T00:00:00",
+  "detalles" : [ {
+    "productoId" : "234",
+    "cantidad" : 1,
+    "precioUnitario" : 27000.0
+  } ],
+  "total" : 27000.0
+}, {
+  "id" : "P00032",
+  "usuarioId" : "u3",
+  "fecha" : "2025-12-29T00:00:00",
+  "detalles" : [ {
+    "productoId" : "91",
+    "cantidad" : 1,
+    "precioUnitario" : 199500.0
+  }, {
+    "productoId" : "232",
+    "cantidad" : 1,
+    "precioUnitario" : 91700.0
+  } ],
+  "total" : 291200.0
+}, {
+  "id" : "P00033",
+  "usuarioId" : "u3",
+  "fecha" : "2026-08-23T00:00:00",
+  "detalles" : [ {
+    "productoId" : "173",
+    "cantidad" : 1,
+    "precioUnitario" : 152150.0
+  } ],
+  "total" : 152150.0
+}, {
+  "id" : "P00034",
+  "usuarioId" : "u3",
+  "fecha" : "2026-01-27T00:00:00",
+  "detalles" : [ {
+    "productoId" : "96",
+    "cantidad" : 1,
+    "precioUnitario" : 158900.0
+  }, {
+    "productoId" : "170",
+    "cantidad" : 1,
+    "precioUnitario" : 63750.0
+  }, {
+    "productoId" : "87",
+    "cantidad" : 1,
+    "precioUnitario" : 199500.0
+  } ],
+  "total" : 422150.0
+}, {
+  "id" : "P00035",
+  "usuarioId" : "u3",
+  "fecha" : "2026-04-25T00:00:00",
+  "detalles" : [ {
+    "productoId" : "93",
+    "cantidad" : 1,
+    "precioUnitario" : 474300.0
+  }, {
+    "productoId" : "170",
+    "cantidad" : 2,
+    "precioUnitario" : 63750.0
+  }, {
+    "productoId" : "238",
+    "cantidad" : 2,
+    "precioUnitario" : 92000.0
+  } ],
+  "total" : 785800.0
+}, {
+  "id" : "P00036",
+  "usuarioId" : "u3",
+  "fecha" : "2026-03-24T00:00:00",
+  "detalles" : [ {
+    "productoId" : "235",
+    "cantidad" : 1,
+    "precioUnitario" : 115200.0
+  }, {
+    "productoId" : "231",
+    "cantidad" : 1,
+    "precioUnitario" : 186200.0
+  } ],
+  "total" : 301400.0
+}, {
+  "id" : "P00037",
+  "usuarioId" : "u3",
+  "fecha" : "2025-12-20T00:00:00",
+  "detalles" : [ {
+    "productoId" : "79",
+    "cantidad" : 1,
+    "precioUnitario" : 977250.0
+  }, {
+    "productoId" : "81",
+    "cantidad" : 2,
+    "precioUnitario" : 144000.0
+  } ],
+  "total" : 1265250.0
+}, {
+  "id" : "P00038",
+  "usuarioId" : "u3",
+  "fecha" : "2026-01-17T00:00:00",
+  "detalles" : [ {
+    "productoId" : "230",
+    "cantidad" : 1,
+    "precioUnitario" : 152000.0
+  }, {
+    "productoId" : "91",
+    "cantidad" : 1,
+    "precioUnitario" : 199500.0
+  }, {
+    "productoId" : "239",
+    "cantidad" : 1,
+    "precioUnitario" : 214900.0
+  } ],
+  "total" : 566400.0
+}, {
+  "id" : "P00039",
+  "usuarioId" : "u4",
+  "fecha" : "2026-04-15T00:00:00",
+  "detalles" : [ {
+    "productoId" : "191",
+    "cantidad" : 2,
+    "precioUnitario" : 65000.0
+  } ],
+  "total" : 130000.0
+}, {
+  "id" : "P00040",
+  "usuarioId" : "u4",
+  "fecha" : "2026-08-17T00:00:00",
+  "detalles" : [ {
+    "productoId" : "15",
+    "cantidad" : 2,
+    "precioUnitario" : 393000.0
+  }, {
+    "productoId" : "192",
+    "cantidad" : 2,
+    "precioUnitario" : 53250.0
+  }, {
+    "productoId" : "6",
+    "cantidad" : 2,
+    "precioUnitario" : 151000.0
+  } ],
+  "total" : 1194500.0
+}, {
+  "id" : "P00041",
+  "usuarioId" : "u4",
+  "fecha" : "2025-11-09T00:00:00",
+  "detalles" : [ {
+    "productoId" : "183",
+    "cantidad" : 1,
+    "precioUnitario" : 43000.0
+  }, {
+    "productoId" : "5",
+    "cantidad" : 2,
+    "precioUnitario" : 134400.0
+  } ],
+  "total" : 311800.0
+}, {
+  "id" : "P00042",
+  "usuarioId" : "u4",
+  "fecha" : "2026-05-14T00:00:00",
+  "detalles" : [ {
+    "productoId" : "11",
+    "cantidad" : 2,
+    "precioUnitario" : 71100.0
+  }, {
+    "productoId" : "183",
+    "cantidad" : 1,
+    "precioUnitario" : 43000.0
+  }, {
+    "productoId" : "15",
+    "cantidad" : 2,
+    "precioUnitario" : 393000.0
+  } ],
+  "total" : 971200.0
+}, {
+  "id" : "P00043",
+  "usuarioId" : "u4",
+  "fecha" : "2026-02-12T00:00:00",
+  "detalles" : [ {
+    "productoId" : "186",
+    "cantidad" : 2,
+    "precioUnitario" : 119250.0
+  } ],
+  "total" : 238500.0
+}, {
+  "id" : "P00044",
+  "usuarioId" : "u4",
+  "fecha" : "2026-03-16T00:00:00",
+  "detalles" : [ {
+    "productoId" : "214",
+    "cantidad" : 1,
+    "precioUnitario" : 75600.0
+  }, {
+    "productoId" : "183",
+    "cantidad" : 2,
+    "precioUnitario" : 43000.0
+  }, {
+    "productoId" : "203",
+    "cantidad" : 2,
+    "precioUnitario" : 73000.0
+  } ],
+  "total" : 307600.0
+}, {
+  "id" : "P00045",
+  "usuarioId" : "u4",
+  "fecha" : "2025-12-11T00:00:00",
+  "detalles" : [ {
+    "productoId" : "13",
+    "cantidad" : 1,
+    "precioUnitario" : 244500.0
+  }, {
+    "productoId" : "218",
+    "cantidad" : 1,
+    "precioUnitario" : 107100.0
+  } ],
+  "total" : 351600.0
+}, {
+  "id" : "P00046",
+  "usuarioId" : "u4",
+  "fecha" : "2026-07-20T00:00:00",
+  "detalles" : [ {
+    "productoId" : "213",
+    "cantidad" : 1,
+    "precioUnitario" : 114000.0
+  } ],
+  "total" : 114000.0
+}, {
+  "id" : "P00047",
+  "usuarioId" : "u4",
+  "fecha" : "2026-05-11T00:00:00",
+  "detalles" : [ {
+    "productoId" : "16",
+    "cantidad" : 1,
+    "precioUnitario" : 166000.0
+  }, {
+    "productoId" : "186",
+    "cantidad" : 2,
+    "precioUnitario" : 119250.0
+  } ],
+  "total" : 404500.0
+}, {
+  "id" : "P00048",
+  "usuarioId" : "u4",
+  "fecha" : "2025-11-29T00:00:00",
+  "detalles" : [ {
+    "productoId" : "3",
+    "cantidad" : 2,
+    "precioUnitario" : 578000.0
+  }, {
+    "productoId" : "8",
+    "cantidad" : 2,
+    "precioUnitario" : 214200.0
+  } ],
+  "total" : 1584400.0
+}, {
+  "id" : "P00049",
+  "usuarioId" : "u4",
+  "fecha" : "2026-04-27T00:00:00",
+  "detalles" : [ {
+    "productoId" : "4",
+    "cantidad" : 1,
+    "precioUnitario" : 363000.0
+  } ],
+  "total" : 363000.0
+}, {
+  "id" : "760034bc-a0db-4abd-ba3d-4aafdd033572",
+  "usuarioId" : "u1",
+  "fecha" : "2026-09-30T08:38:35.5265181",
+  "detalles" : [ {
+    "productoId" : "9",
+    "cantidad" : 1,
+    "precioUnitario" : 25600.0
+  } ],
+  "total" : 42464.0
+}, {
+  "id" : "a93cdc50-0238-41fe-940f-fa6c1045ac24",
+  "usuarioId" : "andres-gmail.com",
+  "fecha" : "2026-09-30T08:50:53.3014049",
+  "detalles" : [ {
+    "productoId" : "127",
+    "cantidad" : 1,
+    "precioUnitario" : 141100.0
+  } ],
+  "total" : 179909.0
+}, {
+  "id" : "54435f90-a78d-4d5e-9a01-a475c7cd3e33",
+  "usuarioId" : "u1",
+  "fecha" : "2026-09-30T09:14:35.7821326",
+  "detalles" : [ {
+    "productoId" : "5",
+    "cantidad" : 1,
+    "precioUnitario" : 134400.0
+  } ],
+  "total" : 171936.0
+}, {
+  "id" : "b8130037-3e4b-4e80-acd9-f308fabe8c32",
+  "usuarioId" : "u0",
+  "fecha" : "2026-09-30T09:29:57.0614085",
+  "detalles" : [ {
+    "productoId" : "241",
+    "cantidad" : 15,
+    "precioUnitario" : 12750.0
+  } ],
+  "total" : 239587.5
+} ]

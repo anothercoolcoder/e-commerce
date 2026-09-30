@@ -1,6 +1,7 @@
 package uptc.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -15,18 +16,23 @@ class I18nTest {
     }
 
     @Test
-    void traduceLaMismaClaveEnLosTresIdiomas() {
+    void traduceLaMismaClaveEnEspanolYEnIngles() {
         I18n.setLanguage("es");
-        assertEquals("Entrar", I18n.text("login.enter"));
+        assertEquals("Agregar al carrito", I18n.text("card.add"));
         assertEquals("es", I18n.language());
 
         I18n.setLanguage("en");
-        assertEquals("Sign in", I18n.text("login.enter"));
+        assertEquals("Add to cart", I18n.text("card.add"));
         assertEquals("en", I18n.language());
+    }
 
-        I18n.setLanguage("pt");
-        assertEquals("Entrar", I18n.text("login.enter"));
-        assertEquals("pt", I18n.language());
+    @Test
+    void formatReemplazaLosMarcadoresPorLosValores() {
+        I18n.setLanguage("es");
+        assertEquals("Solo quedan 3", I18n.format("card.lowStock", 3));
+
+        I18n.setLanguage("en");
+        assertEquals("Only 3 left", I18n.format("card.lowStock", 3));
     }
 
     @Test
@@ -34,11 +40,12 @@ class I18nTest {
         I18n.setLanguage("EN");
 
         assertEquals("en", I18n.language());
+        assertEquals("en", I18n.bundle().getLocale().getLanguage());
     }
 
     @Test
     void unIdiomaDesconocidoONuloDejaEspanol() {
-        I18n.setLanguage("fr");
+        I18n.setLanguage("pt");
         assertEquals("es", I18n.language());
 
         I18n.setLanguage(null);
@@ -51,12 +58,21 @@ class I18nTest {
     }
 
     @Test
-    void losTresArchivosDeIdiomaTienenLasMismasClaves() {
+    void losDosArchivosDeIdiomaTienenLasMismasClavesYNingunTextoVacio() {
         ResourceBundle es = ResourceBundle.getBundle("uptc.i18n.messages", Locale.forLanguageTag("es"));
         ResourceBundle en = ResourceBundle.getBundle("uptc.i18n.messages", Locale.forLanguageTag("en"));
-        ResourceBundle pt = ResourceBundle.getBundle("uptc.i18n.messages", Locale.forLanguageTag("pt"));
 
         assertEquals(es.keySet(), en.keySet());
-        assertEquals(es.keySet(), pt.keySet());
+        for (String clave : es.keySet()) {
+            assertFalse(es.getString(clave).isBlank(), "texto vacío en español: " + clave);
+            assertFalse(en.getString(clave).isBlank(), "texto vacío en inglés: " + clave);
+        }
+    }
+
+    @Test
+    void losMensajesDeErrorDeLasReglasDeNegocioTambienSeTraducen() {
+        I18n.setLanguage("en");
+
+        assertEquals("Not enough stock for Mouse", I18n.format("error.stock", "Mouse"));
     }
 }

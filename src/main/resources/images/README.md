@@ -1,5 +1,5 @@
 # Imágenes de productos
 
-La carpeta `productos/` contiene una imagen por producto del catálogo. El nombre del archivo es el valor de la columna `imagen` de `productos.csv` (por ejemplo `001.png`).
+La aplicación ya no usa estas imágenes: cada producto se ilustra con un emoji según su categoría (`ProductEmoji`), porque las imágenes de `productos/` traen el nombre del producto escrito encima.
 
-`ImageLoader` las carga desde el classpath y las conserva en memoria. Si un producto no tiene imagen, o el archivo no existe, la tarjeta se muestra sin imagen.
+La carpeta se conserva por si se quieren reemplazar por fotos reales. El nombre de cada archivo corresponde a la columna `imagen` de `productos.csv` (por ejemplo `001.png`).

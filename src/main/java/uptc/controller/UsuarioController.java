@@ -9,6 +9,7 @@ import uptc.exception.ValidationException;
 import uptc.model.RolUsuario;
 import uptc.model.Usuario;
 import uptc.persistence.UsuarioJsonDao;
+import uptc.utils.I18n;
 import uptc.utils.PasswordHasher;
 import uptc.utils.Validaciones;
 
@@ -27,12 +28,12 @@ public class UsuarioController {
     public Usuario register(String id, String name, String email, String password, RolUsuario role)
             throws ValidationException, PersistenceException {
         if (Validaciones.vacio(id) || Validaciones.vacio(name) || Validaciones.vacio(password) || role == null) {
-            throw new ValidationException("Datos de usuario incompletos");
+            throw new ValidationException(I18n.text("error.userIncomplete"));
         }
         Validaciones.correo(email);
         for (Usuario existing : users) {
             if (id.equals(existing.getId()) || email.equalsIgnoreCase(existing.getCorreo())) {
-                throw new ValidationException("El usuario o correo ya existe");
+                throw new ValidationException(I18n.text("error.userExists"));
             }
         }
         Usuario user = new Usuario(id, name, email, true, role);
@@ -54,7 +55,7 @@ public class UsuarioController {
                 return user;
             }
         }
-        throw new AutenticacionException("Credenciales inválidas");
+        throw new AutenticacionException(I18n.text("error.credentials"));
     }
 
     /** Devuelve una copia de la lista de usuarios. */

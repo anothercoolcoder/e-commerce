@@ -6,24 +6,24 @@
             fx:controller="uptc.viewController.CartViewController" styleClass="shop-root">
     <center>
         <VBox spacing="14" styleClass="page">
-            <Button text="← Seguir comprando" onAction="#back"/>
-            <Label text="Tu carrito" styleClass="title"/>
-            <Label fx:id="empty" text="Tu carrito está vacío" styleClass="empty"/>
+            <Button text="%cart.back" onAction="#back"/>
+            <Label text="%cart.title" styleClass="title"/>
+            <Label fx:id="empty" text="%cart.empty" styleClass="empty"/>
             <VBox fx:id="lines" spacing="10"/>
         </VBox>
     </center>
     <right>
         <VBox spacing="12" prefWidth="280" styleClass="summary">
-            <Label text="Resumen del pedido" styleClass="section-title"/>
-            <Label text="Subtotal"/>
+            <Label text="%cart.summary" styleClass="section-title"/>
+            <Label text="%cart.subtotal"/>
             <Label fx:id="subtotal"/>
-            <Label text="Impuestos (19%)"/>
+            <Label text="%cart.tax"/>
             <Label fx:id="tax"/>
-            <Label text="Envío"/>
+            <Label text="%cart.shipping"/>
             <Label fx:id="shipping"/>
-            <Label text="Total" styleClass="section-title"/>
+            <Label text="%cart.total" styleClass="section-title"/>
             <Label fx:id="total" styleClass="price-xl"/>
-            <Button text="Ir a pagar" onAction="#checkout" styleClass="cta-button"/>
+            <Button text="%cart.checkout" onAction="#checkout" styleClass="cta-button"/>
         </VBox>
     </right>
 </BorderPane>

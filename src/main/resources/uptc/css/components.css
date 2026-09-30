@@ -17,3 +17,8 @@
 .favorite-active { -fx-text-fill: -fx-danger; }.quantity-selector { -fx-alignment: center; }.search-box { -fx-background-color: -fx-surface; -fx-background-radius: 8px; -fx-border-color: -fx-border; }
 .product-image-frame { -fx-background-color: -fx-surface-alt; -fx-background-radius: 8px; }.product-brand { -fx-font-size: 12px; -fx-text-fill: -fx-text-muted; -fx-font-weight: bold; }.product-name { -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: -fx-text; }.stock-low { -fx-text-fill: -fx-warning; }.stock-ok { -fx-text-fill: -fx-success; }
 .results-bar { -fx-padding: 12px 0; }.filter-panel { -fx-pref-width: 260px; -fx-padding: 16px; -fx-background-color: -fx-surface; -fx-border-color: -fx-border; }.filter-title { -fx-font-size: 20px; -fx-font-weight: bold; }.quick-view { -fx-background-color: -fx-surface; -fx-background-radius: 12px; -fx-padding: 24px; }
+/* Emoji que ilustra cada producto según su categoría */
+.product-emoji { -fx-font-family: "Segoe UI Emoji"; -fx-font-size: 72px; -fx-text-fill: -fx-primary; }
+/* Un pedido dentro del historial de compras */
+.order-box { -fx-background-color: -fx-surface; -fx-border-color: -fx-border; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 12px; }
+.order-box .label { -fx-text-fill: -fx-text; }

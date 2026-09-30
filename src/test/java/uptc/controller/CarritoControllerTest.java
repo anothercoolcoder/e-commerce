@@ -74,7 +74,7 @@ class CarritoControllerTest {
 
     @Test
     void rechazaUnProductoDesactivado() throws Exception {
-        catalogo.delete(ADMIN, "taza");
+        catalogo.deactivate(ADMIN, "taza");
 
         assertThrows(ProductoNoEncontradoException.class, () -> carrito.add("taza", 1));
     }

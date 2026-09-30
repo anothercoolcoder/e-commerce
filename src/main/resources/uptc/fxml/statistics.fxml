@@ -3,31 +3,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="uptc.viewController.StatisticsViewController" styleClass="shop-root">
-    <top>
-        <HBox styleClass="navbar" spacing="16">
-            <Button text="← Administración" onAction="#back"/>
-            <Label text="Estadísticas" styleClass="brand"/>
+<!-- Pestaña de estadísticas del panel de administración (se incluye desde admin.fxml) -->
+<ScrollPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="uptc.viewController.StatisticsViewController" fitToWidth="true">
+    <VBox spacing="16" styleClass="page">
+        <!-- Indicadores generales -->
+        <HBox spacing="40">
+            <VBox>
+                <Label text="%stats.sales"/>
+                <Label fx:id="sales" styleClass="price-xl"/>
+            </VBox>
+            <VBox>
+                <Label text="%stats.orders"/>
+                <Label fx:id="orders" styleClass="price-xl"/>
+            </VBox>
+            <VBox>
+                <Label text="%stats.ticket"/>
+                <Label fx:id="ticket" styleClass="price-xl"/>
+            </VBox>
+            <VBox>
+                <Label text="%stats.units"/>
+                <Label fx:id="units" styleClass="price-xl"/>
+            </VBox>
         </HBox>
-    </top>
-    <center>
-        <VBox spacing="16" styleClass="page">
-            <HBox spacing="30">
-                <VBox>
-                    <Label text="Ventas"/>
-                    <Label fx:id="sales" styleClass="price-xl"/>
-                </VBox>
-                <VBox>
-                    <Label text="Pedidos"/>
-                    <Label fx:id="orders" styleClass="price-xl"/>
-                </VBox>
-                <VBox>
-                    <Label text="Ticket promedio"/>
-                    <Label fx:id="ticket" styleClass="price-xl"/>
-                </VBox>
-            </HBox>
-            <BarChart fx:id="chart" animated="false" title="Unidades vendidas por categoría" VBox.vgrow="ALWAYS">
+
+        <!-- Gráficos -->
+        <HBox spacing="16">
+            <BarChart fx:id="categoryChart" animated="false" legendVisible="false" title="%stats.chart.category"
+                      prefHeight="320" HBox.hgrow="ALWAYS">
                 <xAxis>
                     <CategoryAxis/>
                 </xAxis>
@@ -35,6 +38,27 @@
                     <NumberAxis/>
                 </yAxis>
             </BarChart>
-        </VBox>
-    </center>
-</BorderPane>
+            <BarChart fx:id="customerChart" animated="false" legendVisible="false" title="%stats.chart.customers"
+                      prefHeight="320" HBox.hgrow="ALWAYS">
+                <xAxis>
+                    <CategoryAxis/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis/>
+                </yAxis>
+            </BarChart>
+        </HBox>
+
+        <!-- Listas -->
+        <HBox spacing="40">
+            <VBox spacing="6">
+                <Label text="%stats.top" styleClass="section-title"/>
+                <VBox fx:id="topProducts" spacing="4"/>
+            </VBox>
+            <VBox spacing="6">
+                <Label text="%stats.lowStock" styleClass="section-title"/>
+                <VBox fx:id="lowStock" spacing="4"/>
+            </VBox>
+        </HBox>
+    </VBox>
+</ScrollPane>

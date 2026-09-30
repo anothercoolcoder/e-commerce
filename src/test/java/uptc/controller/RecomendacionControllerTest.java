@@ -15,6 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 import uptc.DatosDePrueba;
 import uptc.controller.tree.DecisionContext;
 import uptc.controller.tree.DecisionTree;
+import uptc.controller.tree.RecommendationProfile;
 import uptc.model.Interaccion;
 import uptc.model.Producto;
 import uptc.model.TipoInteraccion;
@@ -79,7 +80,7 @@ class RecomendacionControllerTest {
         assertEquals(3, recomendados.size());
         assertEquals("laptop", recomendados.get(0).getId());
         assertTrue(!ids(recomendados).contains("agotado"));
-        assertTrue(recomendaciones.explain("nuevo").endsWith("EXPLORADOR_NUEVO"));
+        assertEquals(RecommendationProfile.EXPLORADOR_NUEVO, recomendaciones.profileFor("nuevo"));
     }
 
     // ------------------------------------------------------------ usuario con historial
@@ -104,7 +105,7 @@ class RecomendacionControllerTest {
 
         // Categoría favorita Cocina y precio promedio bajo: gama económica (el horno de 900.000 queda fuera).
         assertEquals(List.of("taza", "olla"), ids(recomendaciones.forUser("ana", 5)));
-        assertTrue(recomendaciones.explain("ana").endsWith("CATEGORIA_ECONOMICA"));
+        assertEquals(RecommendationProfile.CATEGORIA_ECONOMICA, recomendaciones.profileFor("ana"));
     }
 
     @Test
@@ -114,7 +115,7 @@ class RecomendacionControllerTest {
 
         // Promedio (900.000 + 150.000) / 2 > 500.000: solo productos de Cocina de más de 500.000.
         assertEquals(List.of("horno"), ids(recomendaciones.forUser("luis", 5)));
-        assertTrue(recomendaciones.explain("luis").endsWith("CATEGORIA_PREMIUM"));
+        assertEquals(RecommendationProfile.CATEGORIA_PREMIUM, recomendaciones.profileFor("luis"));
     }
 
     @Test
@@ -125,7 +126,7 @@ class RecomendacionControllerTest {
 
         // Nova concentra 2 de 3 interacciones: se recomiendan productos Nova disponibles.
         assertEquals(List.of("laptop", "tablet"), ids(recomendaciones.forUser("eva", 5)));
-        assertTrue(recomendaciones.explain("eva").endsWith("MARCA_PREFERIDA"));
+        assertEquals(RecommendationProfile.MARCA_PREFERIDA, recomendaciones.profileFor("eva"));
     }
 
     @Test
@@ -139,7 +140,8 @@ class RecomendacionControllerTest {
         // 5 compras, categoría favorita Cocina: solo la taza está en oferta y no la ha comprado.
         assertEquals(5, recomendaciones.contextFor("sara").compras());
         assertEquals(List.of("taza"), ids(recomendaciones.forUser("sara", 5)));
-        assertTrue(recomendaciones.explain("sara").endsWith("COMPRADOR_FRECUENTE"));
+        assertEquals(RecommendationProfile.COMPRADOR_FRECUENTE, recomendaciones.profileFor("sara"));
+        assertTrue(recomendaciones.explain("sara").contains(" → "));
     }
 
     @Test
@@ -179,7 +181,7 @@ class RecomendacionControllerTest {
 
     @Test
     void noRecomiendaProductosDesactivados() throws Exception {
-        catalogo.delete(ADMIN, "laptop");
+        catalogo.deactivate(ADMIN, "laptop");
 
         assertTrue(!ids(recomendaciones.forUser("nuevo", 10)).contains("laptop"));
     }

@@ -2,28 +2,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<!-- Los textos que empiezan por % son claves de resources/uptc/i18n/messages_*.properties -->
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="uptc.viewController.LoginViewController" styleClass="auth-root">
     <left>
         <VBox styleClass="auth-brand" spacing="16">
             <Label text="SHOPTREE" styleClass="brand-xl"/>
-            <Label text="Shop smarter. Discover more." styleClass="hero-text" wrapText="true"/>
+            <Label text="%login.tagline" styleClass="hero-text" wrapText="true"/>
         </VBox>
     </left>
     <center>
         <VBox alignment="CENTER" spacing="14" maxWidth="380" styleClass="form">
-            <Label fx:id="titleLabel" styleClass="title"/>
-            <Label fx:id="subtitleLabel" styleClass="muted"/>
-            <TextField fx:id="emailField"/>
-            <PasswordField fx:id="passwordField" onAction="#login"/>
+            <Label text="%login.title" styleClass="title"/>
+            <Label text="%login.subtitle" styleClass="muted"/>
+            <TextField fx:id="emailField" promptText="%login.email"/>
+            <PasswordField fx:id="passwordField" promptText="%login.password" onAction="#login"/>
             <HBox spacing="8">
-                <ComboBox fx:id="languageBox" prefWidth="80"/>
-                <ToggleButton text="Theme" onAction="#toggleTheme"/>
+                <ComboBox fx:id="languageBox" minWidth="95"/>
+                <ToggleButton text="%common.theme" onAction="#toggleTheme"/>
                 <Region HBox.hgrow="ALWAYS"/>
-                <Button fx:id="loginButton" onAction="#login" styleClass="cta-button"/>
+                <Button text="%login.enter" onAction="#login" styleClass="cta-button"/>
             </HBox>
-            <Button fx:id="guestButton" onAction="#guest"/>
-            <Button fx:id="registerButton" onAction="#register" styleClass="link-button"/>
+            <Button text="%login.guest" onAction="#guest"/>
+            <Button text="%login.register" onAction="#register" styleClass="link-button"/>
             <Label fx:id="errorLabel" styleClass="error"/>
         </VBox>
     </center>

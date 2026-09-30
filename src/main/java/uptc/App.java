@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import uptc.utils.I18n;
 import uptc.utils.ThemeManager;
 import uptc.viewController.ShopContext;
 
@@ -34,8 +35,9 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
 
+    /** Carga el FXML con los textos del idioma activo: en el FXML, text="%clave" se traduce aquí. */
     private static Parent loadFXML(String fxml) throws IOException {
-        return new FXMLLoader(App.class.getResource(fxml + ".fxml")).load();
+        return new FXMLLoader(App.class.getResource(fxml + ".fxml"), I18n.bundle()).load();
     }
 
     public static void main(String[] args) {

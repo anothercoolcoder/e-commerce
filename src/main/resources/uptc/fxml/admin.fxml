@@ -2,29 +2,62 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<!-- Panel de administración (solo ADMIN): inventario, compras de cada usuario y estadísticas -->
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="uptc.viewController.AdminViewController" styleClass="shop-root">
+    <top>
+        <HBox styleClass="navbar" spacing="16">
+            <Button text="%common.toStore" onAction="#back"/>
+            <Label text="%admin.title" styleClass="brand"/>
+        </HBox>
+    </top>
     <center>
-        <VBox spacing="12" styleClass="page">
-            <HBox spacing="10">
-                <Button text="← Tienda" onAction="#back"/>
-                <Button text="Ver estadísticas" onAction="#openStatistics"/>
-            </HBox>
-            <Label text="Administración de inventario" styleClass="title"/>
-            <TableView fx:id="table" VBox.vgrow="ALWAYS">
-                <columns>
-                    <TableColumn fx:id="id" text="SKU"/>
-                    <TableColumn fx:id="product" text="Producto" prefWidth="320"/>
-                    <TableColumn fx:id="stockColumn" text="Stock"/>
-                    <TableColumn fx:id="state" text="Estado"/>
-                </columns>
-            </TableView>
-            <HBox spacing="10">
-                <TextField fx:id="stock" promptText="Nuevo stock"/>
-                <Button text="Guardar stock" onAction="#saveStock" styleClass="cta-button"/>
-                <Button text="Desactivar producto" onAction="#deactivate"/>
-            </HBox>
-            <Label fx:id="status"/>
-        </VBox>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <Tab text="%admin.tab.inventory">
+                <VBox spacing="12" styleClass="page">
+                    <!-- Buscador, filtro por categoría y alta/edición/baja de productos -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <TextField fx:id="searchField" promptText="%admin.search" HBox.hgrow="ALWAYS"/>
+                        <ComboBox fx:id="categoryBox" prefWidth="180"/>
+                        <Button text="%admin.new" onAction="#newProduct" styleClass="cta-button"/>
+                        <Button text="%admin.edit" onAction="#editProduct"/>
+                        <Button text="%admin.delete" onAction="#deleteProduct"/>
+                    </HBox>
+                    <TableView fx:id="table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="emoji" text="" prefWidth="40"/>
+                            <TableColumn fx:id="sku" text="%admin.col.sku"/>
+                            <TableColumn fx:id="product" text="%admin.col.product" prefWidth="320"/>
+                            <TableColumn fx:id="category" text="%admin.col.category" prefWidth="130"/>
+                            <TableColumn fx:id="price" text="%admin.col.price" prefWidth="110"/>
+                            <TableColumn fx:id="stockColumn" text="%admin.col.stock"/>
+                            <TableColumn fx:id="state" text="%admin.col.state"/>
+                        </columns>
+                    </TableView>
+                    <!-- Acciones sobre el producto seleccionado en la tabla -->
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <TextField fx:id="stock" promptText="%admin.newStock"/>
+                        <Button text="%admin.saveStock" onAction="#saveStock" styleClass="cta-button"/>
+                        <Button text="%admin.deactivate" onAction="#deactivate"/>
+                        <Button text="%admin.activate" onAction="#activate"/>
+                    </HBox>
+                    <Label fx:id="status" styleClass="status"/>
+                </VBox>
+            </Tab>
+            <Tab text="%admin.tab.purchases">
+                <VBox spacing="12" styleClass="page">
+                    <HBox spacing="10" alignment="CENTER_LEFT">
+                        <Label text="%admin.user"/>
+                        <ComboBox fx:id="userBox" prefWidth="320"/>
+                    </HBox>
+                    <Label fx:id="userSummary" styleClass="muted"/>
+                    <!-- El controlador coloca aquí la lista de pedidos (PurchaseList) -->
+                    <ScrollPane fx:id="historyPane" fitToWidth="true" VBox.vgrow="ALWAYS"/>
+                </VBox>
+            </Tab>
+            <Tab text="%admin.tab.statistics">
+                <fx:include source="statistics.fxml"/>
+            </Tab>
+        </TabPane>
     </center>
 </BorderPane>

@@ -2,13 +2,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="uptc.viewController.AccountViewController" styleClass="shop-root">
-    <VBox spacing="14" maxWidth="500" styleClass="page">
-        <Button text="← Tienda" onAction="#back"/>
-        <Label text="Mi cuenta" styleClass="title"/>
-        <Label fx:id="name" styleClass="section-title"/>
-        <Label fx:id="email"/>
-        <Label fx:id="orders"/>
-    </VBox>
-</StackPane>
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="uptc.viewController.AccountViewController" styleClass="shop-root">
+    <top>
+        <VBox spacing="8" styleClass="page">
+            <Button text="%common.toStore" onAction="#back"/>
+            <Label text="%account.title" styleClass="title"/>
+            <Label fx:id="name" styleClass="section-title"/>
+            <Label fx:id="email"/>
+            <Label fx:id="summary" styleClass="muted"/>
+            <Label text="%account.history" styleClass="section-title"/>
+        </VBox>
+    </top>
+    <center>
+        <!-- El controlador coloca aquí la lista de pedidos (PurchaseList) -->
+        <ScrollPane fx:id="historyPane" fitToWidth="true" styleClass="page"/>
+    </center>
+</BorderPane>

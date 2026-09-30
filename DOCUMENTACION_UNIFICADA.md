@@ -45,9 +45,9 @@ Reglas que se cumplen en el código:
 | `uptc.structures.catalogo` | `ArbolAVL`, `ArbolCatalogo` (su interfaz), `NodoArbolCatalogo` |
 | `uptc.persistence` | `PersistenceManager`, `ProductoCsvDao`, `UsuarioJsonDao`, `CompraJsonDao` |
 | `uptc.exception` | `ValidationException`, `EntityNotFoundException`, `PersistenceException`, `ProductoNoEncontradoException`, `StockInsuficienteException`, `CarritoVacioException`, `AutenticacionException` |
-| `uptc.utils` | `Validaciones`, `PasswordHasher`, `I18n`, `Formato`, y los auxiliares visuales `ThemeManager`, `Theme`, `ImageLoader` |
+| `uptc.utils` | `Validaciones`, `PasswordHasher`, `I18n`, `Formato`, y los auxiliares visuales `ThemeManager` y `Theme` |
 | `uptc.viewController` | `ShopContext`, `ViewNavigator` y un controlador por pantalla (`Login`, `Register`, `Store`, `Detail`, `Cart`, `Checkout`, `Account`, `Admin`, `Statistics`) |
-| `uptc.viewController.components` | `ProductCard`, `PriceLabel`, `RatingStars`, `Badge`, `FavoriteButton`, `InteractionTracker` |
+| `uptc.viewController.components` | `ProductCard`, `ProductEmoji`, `ProductFormDialog`, `PriceLabel`, `RatingStars`, `FavoriteButton`, `PurchaseList`, `InteractionTracker` |
 
 Patrones: **MVC** (FXML = vista, `viewController` = controlador de vista, `controller` + `model` = modelo y negocio), **DAO** (un DAO por archivo), **Singleton** (`PersistenceManager`) y **Observer** (el carrito avisa a las pantallas cuando cambia).
 
@@ -132,7 +132,7 @@ La tienda muestra el resultado en "Recomendados para ti" junto con el camino rec
 ## 5. Reglas de negocio por controlador
 
 **`ProductoController`** — CRUD del catálogo.
-`create`, `update` y `delete` exigen un usuario ADMIN (`Validaciones.admin`) y un producto válido (`Validaciones.producto`: id, SKU y nombre obligatorios, precio > 0, stock ≥ 0, descuento 0–100, calificación 0–5). Id y SKU son únicos. `delete` es eliminación lógica: marca el producto como inactivo para no romper las compras que lo referencian. `reduceStock` lo usa el checkout y no exige ADMIN. Cada cambio se guarda en el CSV.
+`create`, `update`, `delete`, `deactivate` y `activate` exigen un usuario ADMIN (`Validaciones.admin`) y un producto válido (`Validaciones.producto`: id, SKU y nombre obligatorios, precio > 0, stock entero ≥ 0, descuento 0–100, calificación 0–5). Id y SKU son únicos. `delete` elimina el producto del catálogo, del árbol AVL y de los índices B+ (las compras antiguas conservan su id); `deactivate` solo lo oculta de la tienda y `activate` lo vuelve a mostrar. `search(texto, categoría)` es la búsqueda del inventario (incluye inactivos) y `filter` la de la tienda (solo activos); ambas usan el prefijo del índice B+. `reduceStock` lo usa el checkout y no exige ADMIN. Cada cambio se guarda en el CSV.
 
 **`CategoriaController`** — CRUD de categorías con jerarquía padre-hijo (en memoria; las categorías iniciales salen del catálogo). Solo ADMIN. No permite padre inexistente ni eliminar una categoría con subcategorías.
 
@@ -140,9 +140,11 @@ La tienda muestra el resultado en "Recomendados para ti" junto con el camino rec
 
 **`CarritoController`** — `add` valida cantidad positiva, producto existente y activo, y stock suficiente (contando lo que ya hay en el carrito). `subtotal()` suma `precioFinal × cantidad`; `tax()` = 19 % del subtotal; `total()` = subtotal + IVA + envío ($12.000), o 0 si está vacío. Avisa a sus listeners en cada cambio.
 
-**`CompraController`** — `checkout` rechaza el carrito vacío, revisa el stock de **todas** las líneas antes de descontar nada, descuenta stock, guarda el pedido con el precio pagado y vacía el carrito.
+**`CompraController`** — `checkout` rechaza el carrito vacío, revisa el stock de **todas** las líneas antes de descontar nada, descuenta stock, guarda el pedido con el precio pagado y vacía el carrito. `history(userId)` devuelve los pedidos de un usuario; `historyFor(solicitante, userId)` es la consulta con permisos: cada quien ve su propio historial y solo un ADMIN puede ver el de otro usuario.
 
-**`EstadisticasController`** — ventas totales, ticket promedio y unidades vendidas por categoría.
+**`EstadisticasController`** — ventas totales, ticket promedio, unidades vendidas (total, por categoría y por producto), ventas por cliente, productos más vendidos y productos con stock bajo.
+
+Los mensajes de error de estas reglas no están escritos en el código: salen de los archivos de idioma (`I18n.text("error...")`), así que también se muestran en el idioma elegido.
 
 `Producto.precioFinal()` = `precio × (1 − descuento / 100)`.
 
@@ -186,11 +188,19 @@ Los controladores de vista las capturan y muestran `getMessage()` en una etiquet
 | `checkout.fxml` | `CheckoutViewController` | carrito |
 | `account.fxml` | `AccountViewController` | botón Mi cuenta |
 | `admin.fxml` | `AdminViewController` | botón Admin (solo ADMIN) |
-| `statistics.fxml` | `StatisticsViewController` | panel de administración |
+| `statistics.fxml` | `StatisticsViewController` | pestaña dentro de `admin.fxml` (`fx:include`) |
 
+- **Mi cuenta:** muestra el historial detallado del usuario: cada pedido con su fecha, su total y cada producto comprado con su cantidad y precio (`PurchaseList`).
+- **Panel de administración** (tres pestañas): *Inventario* (buscador por nombre y filtro por categoría que actualizan la tabla al instante; crear, editar y eliminar productos con el formulario `ProductFormDialog`, que incluye el emoji; cambiar stock —solo números enteros—, desactivar y reactivar), *Compras por usuario* (el mismo historial detallado, para el usuario que se elija) y *Estadísticas* (indicadores, dos gráficos, más vendidos y stock bajo).
+- **Ilustración de los productos:** cada tarjeta muestra un emoji (`ProductEmoji`), sin texto; el nombre va debajo. Es el emoji que el administrador le asignó al producto (columna `emoji` del CSV) o, si no tiene, el de su categoría.
+- **Formulario de producto:** si guardar falla (dato inválido, SKU repetido) el mensaje aparece dentro del formulario y este no se cierra. El formulario no conoce el catálogo: recibe la acción de guardar como parámetro.
 - **Observer:** `StoreViewController` y `CartViewController` se suscriben al carrito (`addListener`) y se dan de baja al salir de la pantalla (`removeListener`).
-- **Roles:** la tienda solo deja abrir el panel Admin a un ADMIN y, además, `ProductoController` vuelve a validar el rol: ocultar un botón no es seguridad.
-- **Idiomas:** `I18n.text("clave")` lee `resources/uptc/i18n/messages_es|en|pt.properties`. Están traducidos el login y los textos principales de la tienda.
+- **Roles:** el botón Admin solo se muestra a un usuario ADMIN y, además, `ProductoController` y `CompraController.historyFor` vuelven a validar el rol: ocultar un botón no es seguridad.
+- **Idiomas (español e inglés):** todos los textos están en `resources/uptc/i18n/messages_es.properties` y `messages_en.properties`, con las mismas claves.
+  - En los FXML se escribe `text="%clave"`; `App.loadFXML` pasa `I18n.bundle()` al `FXMLLoader`, que reemplaza cada clave al cargar la pantalla.
+  - En Java se usa `I18n.text("clave")` o `I18n.format("clave", valores)` cuando el texto lleva datos (`%s`, `%d`).
+  - Al elegir otro idioma en el selector (login o tienda) se guarda la preferencia y se recarga la pantalla.
+  - Lo único que no se traduce son los datos: nombres, descripciones y categorías de los productos.
 - **Temas:** `ThemeManager` carga `base.css`, `light.css` o `dark.css` (variables de color) y `components.css`.
 - `module-info.java` abre `uptc.viewController` a `javafx.fxml` (inyección de `@FXML`) y `uptc.model` a Jackson.
 
@@ -204,9 +214,9 @@ JUnit 5, sin mocks: cada prueba usa objetos reales y archivos en una carpeta tem
 | `tree.BPlusTreeTest` | inserción con divisiones, separador en la raíz, rangos, reemplazo, eliminación con préstamo y fusión (órdenes 3 a 7), casos límite |
 | `tree.CatalogoBPlusIndexTest` | prefijos, rangos de precio, nombres repetidos, eliminar, vaciar |
 | `tree.DecisionTreeTest` | cada hoja del árbol, contexto con nulos, camino explicado |
-| `controller.ProductoControllerTest` | producto válido/inválido, duplicados, búsquedas, actualización, desactivación, stock, roles |
+| `controller.ProductoControllerTest` | producto válido/inválido, duplicados, búsquedas de tienda e inventario, actualización, eliminación, desactivación y reactivación, stock entero, emoji, roles |
 | `controller.CarritoControllerTest` | agregar, cantidad inválida, stock, inexistente, inactivo, eliminar, vaciar, subtotal, impuesto, total, Observer |
-| `controller.CompraControllerTest` | checkout, precio pagado, persistencia, carrito vacío, stock insuficiente, historial por usuario |
+| `controller.CompraControllerTest` | checkout, precio pagado, persistencia, carrito vacío, stock insuficiente, historial por usuario y quién puede verlo |
 | `controller.UsuarioControllerTest` | registro, hash, duplicados, login correcto/incorrecto, usuario inactivo |
 | `controller.CategoriaControllerTest` | CRUD, jerarquía, roles |
 | `controller.RecomendacionControllerTest` | sin historial, cada perfil, exclusión de comprados/agotados, historial por usuario |
@@ -215,7 +225,7 @@ JUnit 5, sin mocks: cada prueba usa objetos reales y archivos en una carpeta tem
 | `persistence.PersistenceManagerTest` | Singleton y carpeta configurable |
 | `persistence.SeedCatalogIntegrationTest` | carga de los datos semilla reales (240 productos, 5 usuarios, 49 compras) |
 | `utils.*Test`, `model.ModeloTest` | validaciones, hash, idiomas, formato de moneda, precio final |
-| `view.FxmlViewsTest` | carga real de las 9 pantallas FXML con sus controladores (se omite si no hay pantalla) |
+| `view.FxmlViewsTest` | carga real de las 9 pantallas FXML con sus controladores, en español y en inglés; falla si falta una clave de idioma (se omite si no hay pantalla) |
 
 ## 10. Cobertura con JaCoCo
 
@@ -229,9 +239,9 @@ Configuración en `pom.xml` (plugin `jacoco-maven-plugin` 0.8.14):
 
 **Qué se mide:** toda la lógica de negocio — `model`, `controller`, `controller.tree`, `structures`, `persistence`, `exception` y `utils`.
 
-**Qué se excluye y por qué:** solo el código que únicamente dibuja la interfaz y necesita una ventana abierta: `App`, `viewController/**` y los auxiliares visuales `utils.ThemeManager`, `utils.Theme` y `utils.ImageLoader`. No se excluye ninguna clase de negocio.
+**Qué se excluye y por qué:** solo el código que únicamente dibuja la interfaz y necesita una ventana abierta: `App`, `viewController/**` y los auxiliares visuales `utils.ThemeManager` y `utils.Theme`. No se excluye ninguna clase de negocio.
 
-Medición del 30 de septiembre de 2026 (`mvn clean verify`, 169 pruebas): líneas **95,4 %**, instrucciones **97,0 %**, ramas **95,1 %**. Solo `controller` + árboles: líneas 99,7 %. Si no se excluyera nada (contando también el código visual), líneas 82,7 %. El dato vigente es siempre el de `target/site/jacoco/index.html`.
+Medición del 30 de septiembre de 2026 (`mvn clean verify`, 177 pruebas): líneas **95,7 %**, instrucciones **97,2 %**, ramas **95,2 %**. El dato vigente es siempre el de `target/site/jacoco/index.html`.
 
 Para comprobar que el umbral funciona: `mvn verify -Djacoco.minimo=0.99` debe terminar en `BUILD FAILURE`.
 
@@ -240,5 +250,8 @@ Para comprobar que el umbral funciona: `mvn verify -Djacoco.minimo=0.99` debe te
 - Las interacciones (clic, carrito) viven solo durante la sesión; lo que se persiste por usuario son las compras. El campo `interacciones` que trae `usuarios.json` semilla no se usa.
 - La búsqueda de la tienda es por **prefijo del nombre** (es la consulta que resuelve el árbol B+), no por texto contenido.
 - Las categorías se administran en memoria; no tienen archivo propio.
-- El panel de administración permite cambiar stock y desactivar productos; crear productos y administrar categorías solo está disponible en la capa de negocio (y en sus pruebas).
+- El panel de administración no tiene una pantalla para administrar categorías: una categoría nueva se crea al escribirla en el formulario de un producto.
+- El buscador del inventario, igual que el de la tienda, busca por el inicio del nombre.
+- Los mensajes técnicos de error de archivos (`PersistenceException`) están solo en español.
+- La carpeta `resources/images/productos` (imágenes con texto) ya no se usa; se conserva por si se quieren reemplazar por fotos reales.
 - "Continuar como invitado" entra con el primer usuario CLIENTE del archivo.

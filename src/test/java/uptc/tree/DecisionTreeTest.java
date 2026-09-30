@@ -3,10 +3,12 @@ package uptc.tree;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import uptc.controller.tree.DecisionContext;
 import uptc.controller.tree.DecisionTree;
 import uptc.controller.tree.RecommendationProfile;
+import uptc.utils.I18n;
 
 class DecisionTreeTest {
     private final DecisionTree arbol = new DecisionTree();
@@ -51,11 +53,21 @@ class DecisionTreeTest {
     }
 
     @Test
-    void explainDescribeElCaminoRecorridoHastaLaHoja() {
-        String camino = arbol.explain(new DecisionContext("Hogar", 100_000, "", 5));
+    void explainDescribeElCaminoRecorridoEnElIdiomaActivo() {
+        DecisionContext compradorFrecuente = new DecisionContext("Hogar", 100_000, "", 5);
 
+        I18n.setLanguage("es");
         assertEquals("¿Tiene historial? sí → ¿Tiene una marca preferida? no → "
-                + "¿Ha hecho 5 compras o más? sí → COMPRADOR_FRECUENTE", camino);
+                + "¿Ha hecho 5 compras o más? sí → comprador frecuente", arbol.explain(compradorFrecuente));
+
+        I18n.setLanguage("en");
+        assertEquals("Has history? yes → Has a preferred brand? no → "
+                + "Made 5 purchases or more? yes → frequent buyer", arbol.explain(compradorFrecuente));
+    }
+
+    @AfterEach
+    void restaurarEspanol() {
+        I18n.setLanguage("es");
     }
 
     @Test

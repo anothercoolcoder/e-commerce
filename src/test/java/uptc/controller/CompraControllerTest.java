@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uptc.DatosDePrueba.ADMIN;
+import static uptc.DatosDePrueba.CLIENTE;
 import static uptc.DatosDePrueba.producto;
 
 import java.nio.file.Path;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.io.TempDir;
 import uptc.DatosDePrueba;
 import uptc.exception.CarritoVacioException;
 import uptc.exception.StockInsuficienteException;
+import uptc.exception.ValidationException;
 import uptc.model.Compra;
 import uptc.model.Producto;
 import uptc.persistence.CompraJsonDao;
@@ -92,6 +94,28 @@ class CompraControllerTest {
         assertEquals(5, catalogo.find("lampara").getStock());
         assertTrue(compras.all().isEmpty());
         assertEquals(2, carrito.getItems().size());
+    }
+
+    @Test
+    void elAdminPuedeVerElHistorialDeCualquierUsuario() throws Exception {
+        carrito.add("taza", 2);
+        compras.checkout("cliente", carrito);
+
+        List<Compra> historial = compras.historyFor(ADMIN, "cliente");
+
+        assertEquals(1, historial.size());
+        assertEquals("taza", historial.get(0).getDetalles().get(0).getProductoId());
+        assertEquals(2, historial.get(0).getDetalles().get(0).getCantidad());
+    }
+
+    @Test
+    void unClienteSoloPuedeVerSuPropioHistorial() throws Exception {
+        carrito.add("taza", 1);
+        compras.checkout("cliente", carrito);
+
+        assertEquals(1, compras.historyFor(CLIENTE, "cliente").size());
+        assertThrows(ValidationException.class, () -> compras.historyFor(CLIENTE, "ana"));
+        assertThrows(ValidationException.class, () -> compras.historyFor(null, "ana"));
     }
 
     @Test

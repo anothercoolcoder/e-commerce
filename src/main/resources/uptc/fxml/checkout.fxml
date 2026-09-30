@@ -5,11 +5,11 @@
 <StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="uptc.viewController.CheckoutViewController" styleClass="shop-root">
     <VBox spacing="14" maxWidth="500" styleClass="page">
-        <Button text="← Volver al carrito" onAction="#back"/>
-        <Label text="Checkout" styleClass="title"/>
-        <Label text="1 Dirección  →  2 Pago simulado  →  3 Confirmación" styleClass="muted"/>
-        <TextField fx:id="address" promptText="Dirección de entrega"/>
-        <Button text="Confirmar compra" onAction="#pay" styleClass="cta-button"/>
+        <Button text="%checkout.back" onAction="#back"/>
+        <Label text="%checkout.title" styleClass="title"/>
+        <Label text="%checkout.steps" styleClass="muted"/>
+        <TextField fx:id="address" promptText="%checkout.address"/>
+        <Button text="%checkout.confirm" onAction="#pay" styleClass="cta-button"/>
         <Label fx:id="status" wrapText="true"/>
     </VBox>
 </StackPane>

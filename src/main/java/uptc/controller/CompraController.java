@@ -7,11 +7,15 @@ import java.util.UUID;
 import uptc.exception.CarritoVacioException;
 import uptc.exception.PersistenceException;
 import uptc.exception.StockInsuficienteException;
+import uptc.exception.ValidationException;
 import uptc.model.Compra;
 import uptc.model.DetalleCompra;
 import uptc.model.ItemCarrito;
 import uptc.model.Producto;
+import uptc.model.RolUsuario;
+import uptc.model.Usuario;
 import uptc.persistence.CompraJsonDao;
+import uptc.utils.I18n;
 
 /** Checkout simulado: valida el carrito, descuenta stock y registra el pedido en JSON. */
 public class CompraController {
@@ -29,13 +33,13 @@ public class CompraController {
     /** Confirma la compra del carrito para el usuario, guarda el pedido y vacía el carrito. */
     public Compra checkout(String userId, CarritoController cart) throws PersistenceException {
         if (cart.getItems().isEmpty()) {
-            throw new CarritoVacioException("El carrito está vacío");
+            throw new CarritoVacioException(I18n.text("error.cartEmpty"));
         }
         // Primero se revisa todo el carrito, para no descontar stock de un pedido que no se puede completar.
         for (ItemCarrito item : cart.getItems()) {
             Producto product = products.find(item.getProducto().getId());
             if (item.getCantidad() > product.getStock()) {
-                throw new StockInsuficienteException("Stock insuficiente para " + product.getNombre());
+                throw new StockInsuficienteException(I18n.format("error.stock", product.getNombre()));
             }
         }
         List<DetalleCompra> details = new ArrayList<>();
@@ -61,6 +65,19 @@ public class CompraController {
             }
         }
         return result;
+    }
+
+    /**
+     * Historial de un usuario consultado por otra persona: cada quien puede
+     * ver su propio historial, pero solo un ADMIN puede ver el de los demás.
+     */
+    public List<Compra> historyFor(Usuario requester, String userId) throws ValidationException {
+        boolean ownHistory = requester != null && requester.getId().equals(userId);
+        boolean admin = requester != null && requester.getRol() == RolUsuario.ADMIN;
+        if (!ownHistory && !admin) {
+            throw new ValidationException(I18n.text("error.historyForbidden"));
+        }
+        return history(userId);
     }
 
     /** Devuelve una copia de todos los pedidos. */

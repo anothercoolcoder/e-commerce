@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import uptc.controller.CarritoController;
 import uptc.model.ItemCarrito;
 import uptc.utils.Formato;
+import uptc.utils.I18n;
 
 /** Pantalla del carrito: líneas del pedido y resumen de totales. */
 public class CartViewController {
@@ -44,7 +45,7 @@ public class CartViewController {
     private HBox createLine(ItemCarrito item) {
         Label text = new Label(item.getProducto().getNombre() + " × " + item.getCantidad());
         Label price = new Label(Formato.moneda(item.getSubtotal()));
-        Button remove = new Button("Eliminar");
+        Button remove = new Button(I18n.text("cart.remove"));
         remove.setOnAction(event -> ShopContext.cart().remove(item.getProducto().getId()));
         return new HBox(12, text, price, remove);
     }

@@ -7,11 +7,13 @@ import javafx.scene.control.SpinnerValueFactory;
 import uptc.model.Producto;
 import uptc.model.TipoInteraccion;
 import uptc.utils.Formato;
+import uptc.utils.I18n;
 import uptc.viewController.components.InteractionTracker;
+import uptc.viewController.components.ProductEmoji;
 
 /** Detalle de un producto y opción de agregarlo al carrito. */
 public class DetailViewController {
-    @FXML private Label name, description, price, stock, status;
+    @FXML private Label emoji, name, description, price, stock, status;
     @FXML private Spinner<Integer> quantity;
 
     private Producto product;
@@ -22,10 +24,11 @@ public class DetailViewController {
         if (product == null) {
             return;
         }
+        emoji.setText(ProductEmoji.of(product));
         name.setText(product.getNombre());
         description.setText(product.getDescripcion());
         price.setText(Formato.moneda(product.precioFinal()));
-        stock.setText("Stock disponible: " + (int) product.getStock());
+        stock.setText(I18n.format("detail.stock", (int) product.getStock()));
         int maximum = Math.max(1, (int) product.getStock());
         quantity.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, maximum, 1));
     }
@@ -35,7 +38,7 @@ public class DetailViewController {
         try {
             ShopContext.cart().add(product.getId(), quantity.getValue());
             InteractionTracker.track(product.getId(), TipoInteraccion.CARRITO);
-            status.setText("Producto agregado al carrito");
+            status.setText(I18n.text("detail.added"));
         } catch (RuntimeException e) {
             // Stock insuficiente o producto inactivo: se muestra el motivo al usuario.
             status.setText(e.getMessage());

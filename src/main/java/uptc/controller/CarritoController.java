@@ -9,6 +9,7 @@ import uptc.exception.ProductoNoEncontradoException;
 import uptc.exception.StockInsuficienteException;
 import uptc.model.ItemCarrito;
 import uptc.model.Producto;
+import uptc.utils.I18n;
 
 /**
  * Carrito de compras. Valida existencia, estado y stock de cada producto y
@@ -31,16 +32,16 @@ public class CarritoController {
     /** Agrega unidades de un producto. Si ya estaba en el carrito, suma la cantidad. */
     public void add(String productId, int quantity) {
         if (quantity <= 0) {
-            throw new IllegalArgumentException("La cantidad debe ser positiva");
+            throw new IllegalArgumentException(I18n.text("error.quantityPositive"));
         }
         Producto product = products.find(productId);
         if (!product.isActivo()) {
-            throw new ProductoNoEncontradoException("El producto está inactivo");
+            throw new ProductoNoEncontradoException(I18n.text("error.productInactive"));
         }
         ItemCarrito item = findItem(productId);
         int desired = quantity + (item == null ? 0 : item.getCantidad());
         if (desired > product.getStock()) {
-            throw new StockInsuficienteException("Stock insuficiente para " + product.getNombre());
+            throw new StockInsuficienteException(I18n.format("error.stock", product.getNombre()));
         }
         if (item == null) {
             items.add(new ItemCarrito(product, quantity));
@@ -53,7 +54,7 @@ public class CarritoController {
     /** Cambia la cantidad de una línea. Cero elimina la línea. */
     public void setQuantity(String productId, int quantity) {
         if (quantity < 0) {
-            throw new IllegalArgumentException("La cantidad no puede ser negativa");
+            throw new IllegalArgumentException(I18n.text("error.quantityNegative"));
         }
         if (quantity == 0) {
             remove(productId);
@@ -61,10 +62,10 @@ public class CarritoController {
         }
         ItemCarrito item = findItem(productId);
         if (item == null) {
-            throw new ProductoNoEncontradoException("El producto no está en el carrito");
+            throw new ProductoNoEncontradoException(I18n.text("error.notInCart"));
         }
         if (quantity > item.getProducto().getStock()) {
-            throw new StockInsuficienteException("Cantidad no disponible");
+            throw new StockInsuficienteException(I18n.text("error.quantityUnavailable"));
         }
         item.setCantidad(quantity);
         notifyChange();

@@ -14,6 +14,8 @@ public class Producto {
     private double descuento;
     private double calificacion;
     private String imagen;
+    /** Emoji que ilustra el producto; vacío = se usa el emoji de su categoría. */
+    private String emoji = "";
 
     public Producto(String id, String nombre, String descripcion, double precio, double stock, String categoriaId,
             String marca, String etiquetas, boolean activo) {
@@ -123,6 +125,8 @@ public class Producto {
     public void setCalificacion(double calificacion) { this.calificacion = calificacion; }
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
+    public String getEmoji() { return emoji; }
+    public void setEmoji(String emoji) { this.emoji = emoji == null ? "" : emoji.trim(); }
 
     /** Precio que paga el cliente: el precio base menos el porcentaje de descuento. */
     public double precioFinal() {

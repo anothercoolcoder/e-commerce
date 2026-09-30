@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -22,18 +23,18 @@ import uptc.viewController.components.ProductCard;
 
 /** Pantalla principal de la tienda: recomendaciones, búsqueda, filtros y catálogo. */
 public class StoreViewController {
-    private static final String ALL_CATEGORIES = "Todas";
-    private static final String SORT_NAME = "Nombre";
-    private static final String SORT_PRICE_ASC = "Precio menor";
-    private static final String SORT_PRICE_DESC = "Precio mayor";
-    private static final String SORT_RATING = "Mejor calificados";
     private static final int RECOMMENDATION_COUNT = 4;
+    // Posiciones de las opciones del selector de orden (el texto cambia con el idioma).
+    private static final int SORT_PRICE_ASC = 1;
+    private static final int SORT_PRICE_DESC = 2;
+    private static final int SORT_RATING = 3;
 
     @FXML private TextField searchField;
     @FXML private FlowPane productGrid, recommendedGrid;
     @FXML private ComboBox<String> categoryBox, sortBox, languageBox;
-    @FXML private Label cartBadge, userLabel, emptyLabel, statusLabel, storeTitle, recommendedReason;
+    @FXML private Label cartBadge, userLabel, emptyLabel, statusLabel, recommendedReason;
     @FXML private CheckBox availableOnly;
+    @FXML private Button adminButton;
 
     /** Observer del carrito: actualiza el contador cada vez que el carrito cambia. */
     private final PropertyChangeListener cartListener = event -> updateCartBadge();
@@ -42,36 +43,35 @@ public class StoreViewController {
     private void initialize() {
         userLabel.setText(ShopContext.currentUser().getNombre());
 
-        categoryBox.getItems().add(ALL_CATEGORIES);
+        // El botón del panel de administración solo existe para los ADMIN.
+        boolean admin = ShopContext.currentUser().getRol() == RolUsuario.ADMIN;
+        adminButton.setVisible(admin);
+        adminButton.setManaged(admin);
+
+        categoryBox.getItems().add(I18n.text("store.allCategories"));
         for (Categoria category : ShopContext.categories().findAll()) {
             categoryBox.getItems().add(category.getId());
         }
         categoryBox.getSelectionModel().selectFirst();
-        categoryBox.setOnAction(event -> render());
+        categoryBox.valueProperty().addListener((observable, oldCategory, newCategory) -> render());
 
-        sortBox.getItems().setAll(SORT_NAME, SORT_PRICE_ASC, SORT_PRICE_DESC, SORT_RATING);
+        sortBox.getItems().setAll(I18n.text("store.sort.name"), I18n.text("store.sort.priceAsc"),
+                I18n.text("store.sort.priceDesc"), I18n.text("store.sort.rating"));
         sortBox.getSelectionModel().selectFirst();
-        sortBox.setOnAction(event -> render());
+        sortBox.valueProperty().addListener((observable, oldOrder, newOrder) -> render());
 
-        languageBox.getItems().setAll("ES", "EN", "PT");
+        languageBox.getItems().setAll("ES", "EN");
         languageBox.getSelectionModel().select(I18n.language().toUpperCase());
-        languageBox.setOnAction(event -> {
-            I18n.setLanguage(languageBox.getValue());
-            translate();
+        // Los textos del FXML se traducen al cargarlo: al cambiar de idioma se recarga la pantalla.
+        languageBox.valueProperty().addListener((observable, oldLanguage, newLanguage) -> {
+            I18n.setLanguage(newLanguage);
+            leaveTo("store");
         });
 
         ShopContext.cart().addListener(cartListener);
-        translate();
         renderRecommendations();
         render();
         updateCartBadge();
-    }
-
-    private void translate() {
-        searchField.setPromptText(I18n.text("store.search"));
-        storeTitle.setText(I18n.text("store.discover"));
-        emptyLabel.setText(I18n.text("store.empty"));
-        availableOnly.setText(I18n.text("store.available"));
     }
 
     // ------------------------------------------------------------ acciones del FXML
@@ -105,17 +105,13 @@ public class StoreViewController {
     }
 
     @FXML
-    private void logout() {
-        leaveTo("login");
+    private void openAdmin() {
+        leaveTo("admin");
     }
 
     @FXML
-    private void openAdmin() {
-        if (ShopContext.currentUser().getRol() == RolUsuario.ADMIN) {
-            leaveTo("admin");
-        } else {
-            statusLabel.setText("Solo ADMIN puede abrir este panel");
-        }
+    private void logout() {
+        leaveTo("login");
     }
 
     /** Al salir de la pantalla se retira el listener para que el carrito no conserve vistas viejas. */
@@ -138,7 +134,9 @@ public class StoreViewController {
 
     /** Consulta el catálogo con el texto y los filtros actuales y dibuja una tarjeta por producto. */
     private void render() {
-        String category = ALL_CATEGORIES.equals(categoryBox.getValue()) ? null : categoryBox.getValue();
+        String selected = categoryBox.getValue();
+        boolean allCategories = selected == null || selected.equals(I18n.text("store.allCategories"));
+        String category = allCategories ? null : selected;
         List<Producto> products = new ArrayList<>(ShopContext.products()
                 .filter(searchField.getText(), category, null, availableOnly.isSelected()));
         products.sort(comparator());
@@ -151,7 +149,7 @@ public class StoreViewController {
     }
 
     private Comparator<Producto> comparator() {
-        return switch (sortBox.getValue()) {
+        return switch (sortBox.getSelectionModel().getSelectedIndex()) {
             case SORT_PRICE_ASC -> Comparator.comparingDouble(Producto::precioFinal);
             case SORT_PRICE_DESC -> Comparator.comparingDouble(Producto::precioFinal).reversed();
             case SORT_RATING -> Comparator.comparingDouble(Producto::getCalificacion).reversed();
@@ -173,7 +171,7 @@ public class StoreViewController {
         try {
             ShopContext.cart().add(product.getId(), 1);
             InteractionTracker.track(product.getId(), TipoInteraccion.CARRITO);
-            statusLabel.setText("✓ Producto agregado al carrito");
+            statusLabel.setText(I18n.text("store.added"));
         } catch (RuntimeException e) {
             // Stock insuficiente o producto inactivo: se muestra el motivo al usuario.
             statusLabel.setText(e.getMessage());

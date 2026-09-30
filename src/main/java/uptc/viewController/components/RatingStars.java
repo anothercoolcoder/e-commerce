@@ -24,7 +24,6 @@ public class RatingStars extends HBox {
         }
         Label value = new Label(text);
         value.getStyleClass().add("rating");
-        value.setAccessibleText(String.format(Locale.ROOT, "%.1f de 5", rating));
         getChildren().add(value);
     }
 }

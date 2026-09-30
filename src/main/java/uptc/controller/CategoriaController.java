@@ -7,6 +7,7 @@ import uptc.exception.EntityNotFoundException;
 import uptc.exception.ValidationException;
 import uptc.model.Categoria;
 import uptc.model.Usuario;
+import uptc.utils.I18n;
 import uptc.utils.Validaciones;
 
 /** CRUD de categorías y de su relación jerárquica padre-hijo. */
@@ -23,7 +24,7 @@ public class CategoriaController {
         Validaciones.admin(admin);
         validate(category);
         if (find(category.getId()) != null) {
-            throw new ValidationException("La categoría ya existe");
+            throw new ValidationException(I18n.text("error.categoryExists"));
         }
         categories.add(category);
         return category;
@@ -35,7 +36,7 @@ public class CategoriaController {
         validate(category);
         Categoria current = find(category.getId());
         if (current == null) {
-            throw new EntityNotFoundException("Categoría no encontrada: " + category.getId());
+            throw new EntityNotFoundException(I18n.format("error.categoryNotFound", category.getId()));
         }
         categories.set(categories.indexOf(current), category);
         return category;
@@ -46,10 +47,10 @@ public class CategoriaController {
         Validaciones.admin(admin);
         Categoria category = find(id);
         if (category == null) {
-            throw new EntityNotFoundException("Categoría no encontrada: " + id);
+            throw new EntityNotFoundException(I18n.format("error.categoryNotFound", id));
         }
         if (!childrenOf(id).isEmpty()) {
-            throw new ValidationException("No se puede eliminar una categoría con subcategorías");
+            throw new ValidationException(I18n.text("error.categoryHasChildren"));
         }
         categories.remove(category);
     }
@@ -82,11 +83,11 @@ public class CategoriaController {
 
     private void validate(Categoria category) throws ValidationException {
         if (category == null || Validaciones.vacio(category.getId()) || Validaciones.vacio(category.getNombre())) {
-            throw new ValidationException("ID y nombre de categoría son obligatorios");
+            throw new ValidationException(I18n.text("error.categoryRequired"));
         }
         String parentId = category.getCategoriaPadreId();
         if (parentId != null && (parentId.equals(category.getId()) || find(parentId) == null)) {
-            throw new ValidationException("La categoría padre no existe");
+            throw new ValidationException(I18n.text("error.categoryParent"));
         }
     }
 }

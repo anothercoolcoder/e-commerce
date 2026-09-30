@@ -13,6 +13,7 @@ import uptc.model.Usuario;
 import uptc.persistence.ProductoCsvDao;
 import uptc.structures.catalogo.ArbolAVL;
 import uptc.structures.catalogo.ArbolCatalogo;
+import uptc.utils.I18n;
 import uptc.utils.Validaciones;
 
 /**
@@ -50,7 +51,7 @@ public class ProductoController {
         Validaciones.admin(admin);
         Validaciones.producto(product);
         if (exists(product.getId())) {
-            throw new ValidationException("El ID ya existe: " + product.getId());
+            throw new ValidationException(I18n.format("error.idExists", product.getId()));
         }
         validateUniqueSku(product);
         products.add(product);
@@ -73,11 +74,32 @@ public class ProductoController {
         return product;
     }
 
-    /** Eliminación lógica: desactiva el producto para conservar el historial de compras. Solo ADMIN. */
+    /**
+     * Elimina definitivamente un producto del catálogo, del árbol AVL y de los
+     * índices B+. Solo ADMIN. Las compras antiguas conservan el id del producto.
+     */
     public void delete(Usuario admin, String id) throws ValidationException, PersistenceException {
         Validaciones.admin(admin);
         Producto product = find(id);
+        products.remove(product);
+        byId.eliminar(id);
+        index.delete(product);
+        dao.save(products);
+    }
+
+    /** Desactiva el producto: sigue en el catálogo pero deja de aparecer en la tienda. Solo ADMIN. */
+    public void deactivate(Usuario admin, String id) throws ValidationException, PersistenceException {
+        Validaciones.admin(admin);
+        Producto product = find(id);
         product.setActivo(false);
+        dao.save(products);
+    }
+
+    /** Reactiva un producto desactivado para que vuelva a aparecer en la tienda. Solo ADMIN. */
+    public void activate(Usuario admin, String id) throws ValidationException, PersistenceException {
+        Validaciones.admin(admin);
+        Producto product = find(id);
+        product.setActivo(true);
         dao.save(products);
     }
 
@@ -85,7 +107,7 @@ public class ProductoController {
     public void reduceStock(String id, int quantity) throws PersistenceException {
         Producto product = find(id);
         if (quantity <= 0 || quantity > product.getStock()) {
-            throw new StockInsuficienteException("Stock insuficiente para " + product.getNombre());
+            throw new StockInsuficienteException(I18n.format("error.stock", product.getNombre()));
         }
         product.setStock(product.getStock() - quantity);
         dao.save(products);
@@ -94,7 +116,7 @@ public class ProductoController {
     /** Busca un producto por id en el árbol AVL. */
     public Producto find(String id) {
         return byId.buscar(id)
-                .orElseThrow(() -> new ProductoNoEncontradoException("Producto no encontrado: " + id));
+                .orElseThrow(() -> new ProductoNoEncontradoException(I18n.format("error.productNotFound", id)));
     }
 
     /** Indica si existe un producto con ese id. */
@@ -118,21 +140,48 @@ public class ProductoController {
     }
 
     /**
-     * Búsqueda de la tienda: productos activos cuyo nombre comienza por el texto
-     * (índice B+), filtrados por categoría, marca y disponibilidad. Un filtro en
-     * null no se aplica.
+     * Búsqueda del inventario (panel de administración): todos los productos,
+     * activos o no, cuyo nombre comienza por el texto (índice B+) y que
+     * pertenecen a la categoría. Una categoría en null no filtra.
      */
-    public List<Producto> filter(String text, String category, String brand, boolean onlyAvailable) {
+    public List<Producto> search(String text, String category) {
         List<Producto> result = new ArrayList<>();
         for (Producto product : index.findByNamePrefix(text)) {
-            boolean categoryMatches = category == null || category.equals(product.getCategoriaId());
-            boolean brandMatches = brand == null || brand.equalsIgnoreCase(product.getMarca());
-            boolean availabilityMatches = !onlyAvailable || product.getStock() > 0;
-            if (product.isActivo() && categoryMatches && brandMatches && availabilityMatches) {
+            if (category == null || category.equals(product.getCategoriaId())) {
                 result.add(product);
             }
         }
         return result;
+    }
+
+    /**
+     * Búsqueda de la tienda: igual que {@link #search} pero solo productos
+     * activos, y además filtra por marca y disponibilidad. Un filtro en null no
+     * se aplica.
+     */
+    public List<Producto> filter(String text, String category, String brand, boolean onlyAvailable) {
+        List<Producto> result = new ArrayList<>();
+        for (Producto product : search(text, category)) {
+            boolean brandMatches = brand == null || brand.equalsIgnoreCase(product.getMarca());
+            boolean availabilityMatches = !onlyAvailable || product.getStock() > 0;
+            if (product.isActivo() && brandMatches && availabilityMatches) {
+                result.add(product);
+            }
+        }
+        return result;
+    }
+
+    /** Sugiere el id para un producto nuevo: el mayor id numérico del catálogo más uno. */
+    public String nextId() {
+        int max = 0;
+        for (Producto product : products) {
+            try {
+                max = Math.max(max, Integer.parseInt(product.getId()));
+            } catch (NumberFormatException notNumeric) {
+                // Los ids que no son números no cuentan para calcular el siguiente.
+            }
+        }
+        return String.valueOf(max + 1);
     }
 
     /** Devuelve las categorías que aparecen en el catálogo, sin repetir. */
@@ -151,7 +200,7 @@ public class ProductoController {
         for (Producto other : products) {
             boolean sameProduct = other.getId().equals(product.getId());
             if (!sameProduct && other.getSku().equalsIgnoreCase(product.getSku())) {
-                throw new ValidationException("El SKU ya existe: " + product.getSku());
+                throw new ValidationException(I18n.format("error.skuExists", product.getSku()));
             }
         }
     }

@@ -95,6 +95,44 @@ class ProductoControllerTest {
     }
 
     @Test
+    void laBusquedaDelInventarioIncluyeInactivosYFiltraPorCategoria() throws Exception {
+        catalogo.deactivate(ADMIN, "2");
+
+        assertEquals(2, catalogo.search("laptop", null).size());
+        assertEquals(3, catalogo.search("", null).size());
+        assertEquals(1, catalogo.search(null, "Cocina").size());
+        assertTrue(catalogo.search("laptop", "Cocina").isEmpty());
+    }
+
+    @Test
+    void sugiereComoIdElMayorIdNumericoMasUno() throws Exception {
+        assertEquals("4", catalogo.nextId());
+
+        catalogo.create(ADMIN, producto("promo", "Promoción", "Cocina", "Casa", 10, 1));
+        catalogo.create(ADMIN, producto("20", "Vaso", "Cocina", "Casa", 10, 1));
+
+        assertEquals("21", catalogo.nextId());
+    }
+
+    @Test
+    void elStockDebeSerUnNumeroEntero() {
+        Producto medioStock = producto("4", "Mouse", "Tecnología", "Nova", 80_000, 2.5);
+
+        assertThrows(ValidationException.class, () -> catalogo.create(ADMIN, medioStock));
+    }
+
+    @Test
+    void elEmojiDelProductoSeGuardaEnElCsv() throws Exception {
+        Producto bici = producto("4", "Bicicleta", "Deportes", "Vigor", 900_000, 3);
+        bici.setEmoji("🚲");
+
+        catalogo.create(ADMIN, bici);
+
+        assertEquals("🚲", new ProductoCsvDao(carpeta.resolve("productos.csv")).load().get(3).getEmoji());
+        assertEquals("", catalogo.find("1").getEmoji());
+    }
+
+    @Test
     void listaLasCategoriasDelCatalogoSinRepetir() {
         assertEquals(List.of("Computadores", "Cocina"), catalogo.categoryNames());
     }
@@ -128,13 +166,40 @@ class ProductoControllerTest {
     // ------------------------------------------------------------ eliminar / desactivar
 
     @Test
-    void eliminarDesactivaElProductoYLoOcultaDeLaTienda() throws Exception {
+    void eliminarQuitaElProductoDelCatalogoDeLosIndicesYDelArchivo() throws Exception {
         catalogo.delete(ADMIN, "3");
 
-        // Sigue existiendo (las compras antiguas lo referencian) pero ya no sale en la búsqueda.
+        assertFalse(catalogo.exists("3"));
+        assertEquals(2, catalogo.findAll().size());
+        assertTrue(catalogo.searchPrefix("taza").isEmpty());
+        assertTrue(catalogo.searchPrice(50_000, 50_000).isEmpty());
+        assertEquals(2, new ProductoCsvDao(carpeta.resolve("productos.csv")).load().size());
+    }
+
+    @Test
+    void eliminarUnProductoInexistenteLanzaExcepcion() {
+        assertThrows(ProductoNoEncontradoException.class, () -> catalogo.delete(ADMIN, "99"));
+    }
+
+    @Test
+    void desactivarOcultaElProductoDeLaTiendaPeroLoConservaEnElInventario() throws Exception {
+        catalogo.deactivate(ADMIN, "3");
+
         assertFalse(catalogo.find("3").isActivo());
         assertTrue(catalogo.filter("taza", null, null, false).isEmpty());
+        assertEquals(1, catalogo.search("taza", null).size());
         assertFalse(new ProductoCsvDao(carpeta.resolve("productos.csv")).load().get(2).isActivo());
+    }
+
+    @Test
+    void reactivarDevuelveElProductoALaTienda() throws Exception {
+        catalogo.deactivate(ADMIN, "3");
+
+        catalogo.activate(ADMIN, "3");
+
+        assertTrue(catalogo.find("3").isActivo());
+        assertEquals(1, catalogo.filter("taza", null, null, false).size());
+        assertTrue(new ProductoCsvDao(carpeta.resolve("productos.csv")).load().get(2).isActivo());
     }
 
     // ------------------------------------------------------------ stock
@@ -156,12 +221,14 @@ class ProductoControllerTest {
     // ------------------------------------------------------------ roles
 
     @Test
-    void soloUnAdminPuedeCrearActualizarOEliminar() {
+    void soloUnAdminPuedeCrearActualizarEliminarDesactivarOReactivar() {
         Producto nuevo = producto("4", "Mouse", "Tecnología", "Nova", 80_000, 7);
 
         assertThrows(ValidationException.class, () -> catalogo.create(CLIENTE, nuevo));
         assertThrows(ValidationException.class, () -> catalogo.update(CLIENTE, catalogo.find("1")));
         assertThrows(ValidationException.class, () -> catalogo.delete(CLIENTE, "1"));
+        assertThrows(ValidationException.class, () -> catalogo.deactivate(CLIENTE, "1"));
+        assertThrows(ValidationException.class, () -> catalogo.activate(CLIENTE, "1"));
         assertThrows(ValidationException.class, () -> catalogo.create(null, nuevo));
         assertEquals(3, catalogo.findAll().size());
         assertTrue(catalogo.find("1").isActivo());

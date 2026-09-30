@@ -9,22 +9,23 @@
         <VBox>
             <HBox styleClass="navbar" spacing="16">
                 <Label text="SHOPTREE" styleClass="brand"/>
-                <TextField fx:id="searchField" HBox.hgrow="ALWAYS" onAction="#search"/>
-                <Button text="Buscar" onAction="#search"/>
-                <Button text="Carrito" onAction="#openCart"/>
+                <TextField fx:id="searchField" promptText="%store.search" HBox.hgrow="ALWAYS" onAction="#search"/>
+                <Button text="%store.searchButton" onAction="#search"/>
+                <Button text="%store.cart" onAction="#openCart"/>
                 <Label fx:id="cartBadge" text="0" styleClass="badge"/>
-                <Button text="Mi cuenta" onAction="#openAccount"/>
-                <Button text="Admin" onAction="#openAdmin"/>
-                <ComboBox fx:id="languageBox" prefWidth="70"/>
-                <ToggleButton text="Dark" onAction="#toggleTheme"/>
+                <Button text="%store.account" onAction="#openAccount"/>
+                <!-- Solo visible para usuarios ADMIN (lo decide el controlador) -->
+                <Button fx:id="adminButton" text="%store.admin" onAction="#openAdmin"/>
+                <ComboBox fx:id="languageBox" minWidth="95"/>
+                <ToggleButton text="%common.theme" onAction="#toggleTheme"/>
                 <Label fx:id="userLabel" styleClass="user-label"/>
-                <Button text="Salir" onAction="#logout"/>
+                <Button text="%store.logout" onAction="#logout"/>
             </HBox>
             <HBox styleClass="toolbar" spacing="10">
-                <ComboBox fx:id="categoryBox" promptText="Categoría"/>
+                <ComboBox fx:id="categoryBox" promptText="%store.category"/>
                 <ComboBox fx:id="sortBox"/>
-                <CheckBox fx:id="availableOnly" onAction="#search"/>
-                <Button text="Limpiar filtros" onAction="#clearFilters"/>
+                <CheckBox fx:id="availableOnly" text="%store.available" onAction="#search"/>
+                <Button text="%store.clear" onAction="#clearFilters"/>
             </HBox>
         </VBox>
     </top>
@@ -36,16 +37,16 @@
                 </padding>
 
                 <!-- Recomendaciones del árbol de decisión para el usuario activo -->
-                <Label text="Recomendados para ti" styleClass="section-title"/>
+                <Label text="%store.recommended" styleClass="section-title"/>
                 <Label fx:id="recommendedReason" styleClass="muted" wrapText="true"/>
                 <FlowPane fx:id="recommendedGrid" hgap="18" vgap="18" prefWrapLength="1000"/>
 
                 <!-- Catálogo: resultado de la búsqueda y los filtros -->
-                <Label fx:id="storeTitle" styleClass="title"/>
-                <Label text="Envío rápido · Compra segura · Recomendaciones inteligentes" styleClass="muted"/>
+                <Label text="%store.discover" styleClass="title"/>
+                <Label text="%store.tagline" styleClass="muted"/>
                 <Label fx:id="statusLabel" styleClass="status"/>
                 <FlowPane fx:id="productGrid" hgap="18" vgap="18" prefWrapLength="1000"/>
-                <Label fx:id="emptyLabel" visible="false" styleClass="empty"/>
+                <Label fx:id="emptyLabel" text="%store.empty" visible="false" styleClass="empty"/>
             </VBox>
         </ScrollPane>
     </center>

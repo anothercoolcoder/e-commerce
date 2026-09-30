@@ -1,7 +1,6 @@
 package uptc.viewController;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -16,29 +15,18 @@ import uptc.utils.ThemeManager;
 public class LoginViewController {
     @FXML private TextField emailField;
     @FXML private PasswordField passwordField;
-    @FXML private Label errorLabel, titleLabel, subtitleLabel;
-    @FXML private Button loginButton, guestButton, registerButton;
+    @FXML private Label errorLabel;
     @FXML private ComboBox<String> languageBox;
 
     @FXML
     private void initialize() {
-        languageBox.getItems().setAll("ES", "EN", "PT");
+        languageBox.getItems().setAll("ES", "EN");
         languageBox.getSelectionModel().select(I18n.language().toUpperCase());
-        languageBox.setOnAction(event -> {
-            I18n.setLanguage(languageBox.getValue());
-            translate();
+        // Los textos del FXML se traducen al cargarlo: al cambiar de idioma se recarga la pantalla.
+        languageBox.valueProperty().addListener((observable, oldLanguage, newLanguage) -> {
+            I18n.setLanguage(newLanguage);
+            ViewNavigator.go("login");
         });
-        translate();
-    }
-
-    private void translate() {
-        titleLabel.setText(I18n.text("login.title"));
-        subtitleLabel.setText(I18n.text("login.subtitle"));
-        emailField.setPromptText(I18n.text("login.email"));
-        passwordField.setPromptText(I18n.text("login.password"));
-        loginButton.setText(I18n.text("login.enter"));
-        guestButton.setText(I18n.text("login.guest"));
-        registerButton.setText(I18n.text("login.register"));
     }
 
     @FXML
