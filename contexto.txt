@@ -1,0 +1,616 @@
+Actúa como un ingeniero senior de Java/Maven/JavaFX especializado en refactorización académica y testing.
+
+Estoy trabajando en un proyecto universitario de Programación III llamado ShopTree. El proyecto ya está avanzado y fue desarrollado parcialmente por otro compañero. Tu trabajo NO es rehacer el proyecto desde cero, sino revisar cuidadosamente el código existente, entenderlo y dejarlo lo más simple, coherente y fácil de explicar posible, sin romper los requisitos académicos ni la funcionalidad existente.
+
+IMPORTANTE:
+
+* No agregues complejidad innecesaria.
+* No introduzcas patrones, librerías o abstracciones solamente porque sean "best practice".
+* No conviertas un proyecto académico en una arquitectura empresarial.
+* Prioriza código que un estudiante pueda explicar claramente frente al profesor.
+* Antes de modificar cualquier cosa, entiende cómo funciona actualmente.
+* No elimines funcionalidad requerida solamente para reducir código.
+* No inventes requisitos que no estén en el proyecto.
+* Conserva las estructuras de datos exigidas por el proyecto.
+* Si encuentras código innecesariamente complejo, duplicado o difícil de explicar, simplifícalo.
+* Si una clase está bien como está, no la modifiques por gusto.
+
+==================================================
+
+1. DOCUMENTACIÓN DE REFERENCIA
+   ==================================================
+
+Lee primero:
+
+* README.md
+* DOCUMENTACION_UNIFICADA.md
+
+Úsalos como referencia para entender el objetivo, arquitectura y requisitos actuales.
+
+La documentación indica que el proyecto debe demostrar, entre otras cosas:
+
+* JavaFX/FXML
+* arquitectura por capas
+* CRUD
+* persistencia
+* estructuras de datos
+* árbol AVL
+* árbol de decisión
+* árbol B+
+* recomendaciones
+* pruebas unitarias
+* JaCoCo
+* mínimo 75 % de cobertura en lógica de negocio
+
+La documentación también indica que existen dos familias de arquitectura que actualmente conviven:
+
+1. Arquitectura académica:
+   service
+   repository
+   structures
+   dto
+   mapper
+
+2. Arquitectura comercial:
+   controller
+   persistence
+   ShopContext
+   JavaFX/FXML
+
+No asumas automáticamente que una de las dos debe eliminarse. Primero determina qué código realmente utiliza la aplicación y qué código es necesario para las pruebas o requisitos académicos.
+
+==================================================
+2. PRIMERA FASE: AUDITORÍA SIN MODIFICAR
+========================================
+
+Antes de cambiar código, inspecciona:
+
+* pom.xml
+* src/main/java
+* src/main/resources
+* src/test/java
+* module-info.java
+* data/
+* configuración de Maven
+* configuración de JaCoCo
+* configuración de Surefire
+* todos los tests existentes
+
+Ejecuta primero:
+
+mvn clean test
+
+y después los comandos necesarios para comprobar JaCoCo.
+
+Determina:
+
+A. Qué funciona actualmente.
+B. Qué no funciona.
+C. Qué clases realmente participan en el flujo principal.
+D. Qué clases son código muerto, duplicado o heredado.
+E. Qué clases tienen responsabilidades excesivas.
+F. Qué lógica está duplicada.
+G. Qué código es innecesariamente complejo.
+H. Qué código es difícil de explicar a un profesor.
+I. Qué código podría simplificarse sin perder funcionalidad.
+J. Qué partes son necesarias exclusivamente para cumplir requisitos académicos.
+K. Qué partes afectan directamente la cobertura de JaCoCo.
+
+NO hagas cambios todavía.
+
+Al terminar esta auditoría, crea mentalmente una lista de cambios priorizados:
+
+* Crítico: rompe compilación, tests o requisitos.
+* Importante: dificulta mantenimiento o explicación.
+* Simplificación: código innecesariamente complejo.
+* Opcional: mejoras que no son necesarias.
+
+==================================================
+3. SEGUNDA FASE: SIMPLIFICACIÓN
+===============================
+
+Después de entender el proyecto, refactoriza.
+
+Objetivo principal:
+
+"El código debe ser lo más sencillo posible de leer, entender, probar y explicar, manteniendo la funcionalidad."
+
+Prioridades:
+
+1. Eliminar duplicación.
+2. Eliminar código muerto que realmente no sea necesario.
+3. Reducir métodos excesivamente largos.
+4. Reducir clases innecesariamente complejas.
+5. Evitar abstracciones innecesarias.
+6. Evitar patrones de diseño artificiales.
+7. Mantener nombres claros.
+8. Mantener responsabilidades claras.
+9. Mantener las estructuras de datos requeridas.
+10. Mantener una arquitectura que pueda explicarse fácilmente.
+
+Ejemplo de criterio:
+
+Si una solución puede hacerse con:
+
+Producto → Controller → Repository
+
+no crear:
+
+Producto → DTO → Mapper → Service → Facade → Adapter → Repository
+
+a menos que exista una razón real o un requisito académico que lo justifique.
+
+No elimines DTO, Mapper, Service, Repository, árboles, etc. automáticamente. Primero verifica si realmente son utilizados o requeridos.
+
+==================================================
+4. REGLA ESPECIAL PARA LAS ESTRUCTURAS DE DATOS
+===============================================
+
+El proyecto debe conservar y poder demostrar claramente:
+
+* Árbol AVL
+* Árbol de decisión
+* Árbol B+
+
+No reemplaces estas estructuras por:
+
+* HashMap
+* TreeMap
+* listas
+* librerías externas
+* estructuras estándar equivalentes
+
+cuando la estructura propia sea parte del requisito académico.
+
+La implementación debe ser sencilla y explicable.
+
+Para cada estructura verifica:
+
+* inserción
+* búsqueda
+* eliminación cuando corresponda
+* casos límite
+* balanceo/rotaciones en AVL
+* búsqueda por prefijo/rango en B+
+* decisiones/recomendaciones en árbol de decisión
+
+Los tests deben demostrar estas operaciones.
+
+==================================================
+5. JAVA FX
+==========
+
+Revisa que:
+
+* La vista no acceda directamente a archivos.
+* La vista no contenga lógica de negocio innecesaria.
+* Los controladores JavaFX sean fáciles de entender.
+* No existan listeners o callbacks innecesariamente complejos.
+* No haya código duplicado entre vistas.
+* Los FXML sigan funcionando.
+* module-info.java siga siendo correcto.
+
+No hagas una reestructuración visual completa.
+
+Si la interfaz ya funciona, prioriza estabilidad sobre rediseño.
+
+==================================================
+6. PERSISTENCIA
+===============
+
+Revisa:
+
+* CSV
+* JSON
+* DAOs
+* PersistenceManager
+* repositorios
+* manejo de excepciones
+
+Verifica que no haya múltiples formas innecesarias de hacer exactamente lo mismo.
+
+Mantén las excepciones propias cuando sean realmente utilizadas:
+
+* ValidationException
+* EntityNotFoundException
+* PersistenceException
+* ProductoNoEncontradoException
+* StockInsuficienteException
+* CarritoVacioException
+* AutenticacionException
+
+Simplifica el manejo de excepciones si está excesivamente complicado.
+
+==================================================
+7. TESTING
+==========
+
+Revisa todos los tests existentes.
+
+No quiero tests artificiales cuyo único propósito sea aumentar el porcentaje de JaCoCo.
+
+Quiero tests que demuestren comportamiento real.
+
+Prioriza:
+
+PRODUCTOS
+
+* producto válido
+* producto inválido
+* búsqueda
+* actualización
+* eliminación/desactivación
+
+CARRITO
+
+* agregar producto
+* cantidad inválida
+* stock insuficiente
+* producto inexistente
+* eliminar
+* vaciar
+* subtotal
+* impuesto
+* total
+
+PERSISTENCIA
+
+* guardar
+* leer
+* archivo inexistente
+* JSON inválido
+* archivo temporal para tests
+
+ROLES
+
+* ADMIN
+* CLIENTE
+* operaciones permitidas/no permitidas
+
+AVL
+
+* insertar
+* buscar
+* eliminar
+* rotación izquierda
+* rotación derecha
+* rotaciones dobles
+* casos límite
+
+B+
+
+* inserción
+* búsqueda
+* prefijos
+* rangos
+* casos límite
+
+ÁRBOL DE DECISIÓN
+
+* usuario con historial
+* usuario sin historial
+* preferencias
+* recomendaciones
+
+OTROS
+
+* internacionalización
+* FXML
+* comportamiento esencial de JavaFX cuando sea razonable
+
+==================================================
+8. JACOCO — PARTE CRÍTICA
+=========================
+
+Este punto es obligatorio.
+
+El profesor exige una cobertura mínima del 75 % en la lógica de negocio.
+
+No te limites a ejecutar JaCoCo y decir "hay X %".
+
+Debes comprobar exactamente:
+
+1. Qué plugin de JaCoCo está configurado en pom.xml.
+2. En qué fase del ciclo Maven se ejecuta.
+3. Qué tests ejecuta.
+4. Qué clases incluye.
+5. Qué clases excluye.
+6. Si está generando correctamente el reporte.
+7. Si existe un threshold/check de cobertura.
+8. Qué métrica utiliza ese threshold:
+
+   * instruction
+   * branch
+   * line
+   * method
+   * class
+9. Si el threshold realmente corresponde al requisito del profesor.
+10. Si la cobertura del 75 % se está calculando sobre la lógica de negocio y no simplemente sobre todo el proyecto incluyendo JavaFX, DTOs, getters/setters, configuración, etc.
+
+IMPORTANTE:
+
+No manipules JaCoCo para inflar artificialmente la cobertura.
+
+No excluyas clases de lógica de negocio únicamente para alcanzar 75 %.
+
+Sí puedes excluir legítimamente código que no constituye lógica de negocio, por ejemplo:
+
+* clases de arranque
+* configuración
+* clases generadas
+* código puramente visual
+* DTOs simples
+* clases que el profesor explícitamente no considere lógica de negocio
+
+Pero cada exclusión debe tener una razón clara.
+
+==================================================
+9. CONFIGURACIÓN DE JACOCO
+==========================
+
+Determina si la configuración actual debería ser algo equivalente a:
+
+* preparación del agente antes de tests
+* ejecución de tests
+* generación del reporte
+* verificación del mínimo de cobertura
+
+Comprueba que:
+
+mvn clean test
+
+produzca correctamente los resultados de JaCoCo.
+
+También comprueba:
+
+mvn clean verify
+
+si el proyecto está configurado para validar cobertura durante verify.
+
+Si actualmente JaCoCo solamente genera un reporte pero NO hace fallar el build cuando se está por debajo del mínimo requerido, determina si eso debe corregirse.
+
+El objetivo académico debe ser:
+
+Si la cobertura de la lógica de negocio es menor al 75 % → Maven debe poder detectarlo.
+
+Si está por encima → build correcto.
+
+No cambies el umbral a un valor menor para que el proyecto pase.
+
+==================================================
+10. REPORTE DE JACOCO
+=====================
+
+Después de modificar los tests/configuración, genera el reporte.
+
+Busca el reporte normalmente en:
+
+target/site/jacoco/
+
+y revisa:
+
+* index.html
+* clases
+* paquetes
+* líneas
+* métodos
+* branches
+* instrucciones
+
+Determina cuál es la cobertura real de la lógica de negocio.
+
+Si el proyecto tiene clases visuales JavaFX que hacen que la cobertura global sea engañosa, separa claramente:
+
+COBERTURA TOTAL
+
+de
+
+COBERTURA DE LÓGICA DE NEGOCIO
+
+No presentes una cifra como cumplimiento del requisito si en realidad no representa la lógica de negocio.
+
+==================================================
+11. SIMPLIFICACIÓN DE TESTS
+===========================
+
+Los tests también deben ser fáciles de explicar.
+
+Evita:
+
+* mocks innecesarios
+* reflection innecesaria
+* tests gigantes
+* lógica compleja dentro del test
+* métodos auxiliares excesivos
+* asserts redundantes
+
+Prefiere:
+
+Arrange
+Act
+Assert
+
+Ejemplo conceptual:
+
+1. Crear producto.
+2. Agregar producto.
+3. Verificar resultado.
+
+Cada test debe responder claramente:
+
+"¿Qué comportamiento estoy comprobando?"
+
+==================================================
+12. COMPATIBILIDAD Y NO REGRESIÓN
+=================================
+
+Después de cada grupo importante de cambios ejecuta:
+
+mvn clean test
+
+y al final:
+
+mvn clean verify
+
+También verifica que la aplicación pueda iniciarse.
+
+Si existe un comando Maven apropiado para JavaFX, úsalo.
+
+No consideres terminado el trabajo solamente porque compila.
+
+Comprueba:
+
+* tests
+* cobertura
+* recursos
+* FXML
+* persistencia
+* estructuras de datos
+* navegación principal
+
+==================================================
+13. NO CAMBIAR INNECESARIAMENTE
+===============================
+
+NO:
+
+* cambies nombres públicos sin necesidad
+* cambies contratos de interfaces sin necesidad
+* cambies formatos de CSV/JSON sin necesidad
+* elimines funcionalidades existentes sin justificarlo
+* agregues frameworks
+* agregues bases de datos
+* agregues servicios externos
+* agregues inteligencia artificial
+* agregues arquitectura innecesaria
+
+Este es un proyecto académico. La claridad es más importante que la sofisticación.
+
+==================================================
+14. DOCUMENTACIÓN
+=================
+
+Después de terminar los cambios, actualiza únicamente la documentación que haya quedado incorrecta.
+
+No escribas documentación exageradamente técnica.
+
+La documentación debe permitir que un estudiante pueda explicar:
+
+* arquitectura
+* flujo principal
+* estructuras de datos
+* persistencia
+* pruebas
+* JaCoCo
+
+Si encuentras contradicciones entre la documentación y el código, prioriza el comportamiento real del código y documenta la corrección.
+
+==================================================
+15. INFORME FINAL
+=================
+
+Al terminar, NO me entregues solamente "todo está bien".
+
+Dame un informe estructurado con:
+
+### 1. Estado inicial
+
+Qué problemas encontraste.
+
+### 2. Cambios realizados
+
+Lista concreta de archivos modificados y qué cambió.
+
+### 3. Código eliminado
+
+Qué eliminaste y por qué era seguro eliminarlo.
+
+### 4. Código simplificado
+
+Qué partes quedaron más sencillas y cómo.
+
+### 5. Arquitectura final
+
+Explica brevemente el flujo:
+
+Vista
+↓
+Controller
+↓
+Service si aplica
+↓
+Repository/Persistence
+↓
+Datos
+
+y dónde intervienen:
+
+* AVL
+* B+
+* árbol de decisión
+
+### 6. Testing
+
+Número de tests antes y después.
+
+### 7. JaCoCo
+
+Indica:
+
+* cobertura total
+* cobertura de lógica de negocio
+* line coverage
+* branch coverage
+* instruction coverage
+* método utilizado para calcular el cumplimiento
+* threshold configurado
+* si Maven falla correctamente cuando no se cumple
+
+### 8. Comandos ejecutados
+
+Por ejemplo:
+
+mvn clean test
+mvn clean verify
+
+y cualquier otro comando necesario.
+
+### 9. Resultado
+
+Indica claramente:
+
+* compilación
+* tests
+* JaCoCo
+* cobertura
+* aplicación
+
+### 10. Cosas que todavía debería saber explicar
+
+Hazme una lista de los puntos del código que probablemente podría preguntarme el profesor.
+
+==================================================
+16. REGLA FINAL
+===============
+
+Antes de considerar terminado el trabajo pregúntate:
+
+"¿Un estudiante que conoce Java, estructuras de datos, Maven, JUnit y JavaFX podría explicar este código frente a un profesor sin tener que justificar diez capas de abstracción?"
+
+Si la respuesta es no, simplifica.
+
+El objetivo NO es tener el código más avanzado.
+
+El objetivo es tener un proyecto:
+
+* correcto
+* funcional
+* testeado
+* con JaCoCo correctamente configurado
+* con al menos 75 % de cobertura de lógica de negocio
+* fácil de leer
+* fácil de probar
+* fácil de explicar
+* y fiel a los requisitos académicos.
+
+IMPORTANTE: no afirmes que se cumple el 75 % hasta haber ejecutado realmente Maven y revisado el resultado de JaCoCo.

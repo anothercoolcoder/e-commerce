@@ -1,9 +1,9 @@
 package uptc.model;
 
 public class DetalleCompra {
-    String productoId;
-    int cantidad;
-    double precioUnitario;
+    private String productoId;
+    private int cantidad;
+    private double precioUnitario;
     public DetalleCompra() {
     }
     public DetalleCompra(String productoId, int cantidad, double precioUnitario) {

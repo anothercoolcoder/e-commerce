@@ -3,12 +3,12 @@ package uptc.model;
 import java.time.LocalDateTime;
 
 public class Interaccion {
-    String id;
-    String usuarioId;
-    String productoId;
-    TipoInteraccion tipo;
-    LocalDateTime fecha;
-    double peso;
+    private String id;
+    private String usuarioId;
+    private String productoId;
+    private TipoInteraccion tipo;
+    private LocalDateTime fecha;
+    private double peso;
 
     public Interaccion(String id, String usuarioId, String productoId, TipoInteraccion tipo, LocalDateTime fecha,
             double peso) {

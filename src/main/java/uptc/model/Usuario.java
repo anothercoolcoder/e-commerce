@@ -1,15 +1,12 @@
 package uptc.model;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Usuario {
     private String id;
     private String nombre;
     private String correo;
-    private boolean estado;
+    private boolean estado = true;
     private RolUsuario rol;
-    private List<Preferencia> preferencias;
+    private String passwordHash;
     public Usuario() {
     }
     public Usuario(String id, String nombre, String correo, boolean estado, RolUsuario rol) {
@@ -50,6 +47,6 @@ public class Usuario {
         this.rol = rol;
     }
 
-    
-
+    public String getPasswordHash() { return passwordHash; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
 }

@@ -1,5 +1,17 @@
 # e-commerce
 
+## Cómo ejecutar
+
+```bash
+mvn javafx:run      # abre la aplicación
+mvn clean test      # pruebas + reporte de cobertura en target/site/jacoco/index.html
+mvn clean verify    # además falla si la cobertura de la lógica de negocio es menor al 75 %
+```
+
+## Documentación
+
+La arquitectura, el flujo entre capas, los árboles (AVL, B+ y de decisión), la persistencia, las pruebas y la configuración de JaCoCo están explicados en [DOCUMENTACION_UNIFICADA.md](DOCUMENTACION_UNIFICADA.md).
+
 ## Sistema de Recomendación de Productos (E-commerce)
 *Contexto*: Simular un motor de recomendación como el de Amazon, que organiza
 productos y sugiere otros relacionados.

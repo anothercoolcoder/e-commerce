@@ -1,0 +1,726 @@
+[
+  {
+    "id": "u0",
+    "nombre": "Administrador",
+    "email": "admin@tienda.com",
+    "rol": "ADMIN",
+    "password": "admin123",
+    "tema": "dark",
+    "idioma": "es",
+    "interacciones": []
+  },
+  {
+    "id": "u1",
+    "nombre": "Gamer",
+    "email": "gamer@correo.com",
+    "rol": "CLIENTE",
+    "password": "cliente123",
+    "tema": "light",
+    "idioma": "es",
+    "interacciones": [
+      {
+        "productoId": 60,
+        "tipo": "CARRITO",
+        "fecha": "2026-02-17"
+      },
+      {
+        "productoId": 45,
+        "tipo": "VISTA",
+        "fecha": "2026-06-01"
+      },
+      {
+        "productoId": 32,
+        "tipo": "VISTA",
+        "fecha": "2026-03-17"
+      },
+      {
+        "productoId": 22,
+        "tipo": "FAVORITO",
+        "fecha": "2026-07-13"
+      },
+      {
+        "productoId": 35,
+        "tipo": "VISTA",
+        "fecha": "2026-03-23"
+      },
+      {
+        "productoId": 3,
+        "tipo": "FAVORITO",
+        "fecha": "2026-07-21"
+      },
+      {
+        "productoId": 32,
+        "tipo": "CLIC",
+        "fecha": "2026-04-22"
+      },
+      {
+        "productoId": 29,
+        "tipo": "VISTA",
+        "fecha": "2026-08-02"
+      },
+      {
+        "productoId": 46,
+        "tipo": "CLIC",
+        "fecha": "2026-01-07"
+      },
+      {
+        "productoId": 18,
+        "tipo": "VISTA",
+        "fecha": "2026-05-18"
+      },
+      {
+        "productoId": 15,
+        "tipo": "VISTA",
+        "fecha": "2025-11-20"
+      },
+      {
+        "productoId": 16,
+        "tipo": "VISTA",
+        "fecha": "2026-07-29"
+      },
+      {
+        "productoId": 43,
+        "tipo": "CLIC",
+        "fecha": "2026-07-03"
+      },
+      {
+        "productoId": 35,
+        "tipo": "VISTA",
+        "fecha": "2025-10-15"
+      },
+      {
+        "productoId": 12,
+        "tipo": "CARRITO",
+        "fecha": "2026-08-27"
+      },
+      {
+        "productoId": 38,
+        "tipo": "VISTA",
+        "fecha": "2026-04-29"
+      },
+      {
+        "productoId": 46,
+        "tipo": "VISTA",
+        "fecha": "2026-01-12"
+      },
+      {
+        "productoId": 44,
+        "tipo": "VISTA",
+        "fecha": "2026-07-20"
+      },
+      {
+        "productoId": 56,
+        "tipo": "VISTA",
+        "fecha": "2026-03-29"
+      },
+      {
+        "productoId": 39,
+        "tipo": "VISTA",
+        "fecha": "2026-02-02"
+      },
+      {
+        "productoId": 25,
+        "tipo": "FAVORITO",
+        "fecha": "2026-08-16"
+      },
+      {
+        "productoId": 50,
+        "tipo": "CLIC",
+        "fecha": "2026-01-27"
+      },
+      {
+        "productoId": 34,
+        "tipo": "CLIC",
+        "fecha": "2025-12-09"
+      },
+      {
+        "productoId": 45,
+        "tipo": "VISTA",
+        "fecha": "2025-11-05"
+      },
+      {
+        "productoId": 55,
+        "tipo": "CLIC",
+        "fecha": "2025-10-16"
+      }
+    ]
+  },
+  {
+    "id": "u2",
+    "nombre": "Deportista",
+    "email": "deportista@correo.com",
+    "rol": "CLIENTE",
+    "password": "cliente123",
+    "tema": "light",
+    "idioma": "es",
+    "interacciones": [
+      {
+        "productoId": 147,
+        "tipo": "FAVORITO",
+        "fecha": "2026-04-02"
+      },
+      {
+        "productoId": 142,
+        "tipo": "VISTA",
+        "fecha": "2026-01-19"
+      },
+      {
+        "productoId": 16,
+        "tipo": "VISTA",
+        "fecha": "2025-12-29"
+      },
+      {
+        "productoId": 144,
+        "tipo": "CLIC",
+        "fecha": "2026-07-23"
+      },
+      {
+        "productoId": 112,
+        "tipo": "CLIC",
+        "fecha": "2026-03-26"
+      },
+      {
+        "productoId": 153,
+        "tipo": "VISTA",
+        "fecha": "2025-12-12"
+      },
+      {
+        "productoId": 7,
+        "tipo": "VISTA",
+        "fecha": "2025-12-20"
+      },
+      {
+        "productoId": 103,
+        "tipo": "CLIC",
+        "fecha": "2026-01-14"
+      },
+      {
+        "productoId": 118,
+        "tipo": "VISTA",
+        "fecha": "2025-11-14"
+      },
+      {
+        "productoId": 20,
+        "tipo": "VISTA",
+        "fecha": "2026-07-26"
+      },
+      {
+        "productoId": 153,
+        "tipo": "VISTA",
+        "fecha": "2026-04-09"
+      },
+      {
+        "productoId": 12,
+        "tipo": "VISTA",
+        "fecha": "2026-06-20"
+      },
+      {
+        "productoId": 17,
+        "tipo": "CLIC",
+        "fecha": "2026-01-16"
+      },
+      {
+        "productoId": 142,
+        "tipo": "VISTA",
+        "fecha": "2026-07-21"
+      },
+      {
+        "productoId": 11,
+        "tipo": "CLIC",
+        "fecha": "2026-01-07"
+      },
+      {
+        "productoId": 105,
+        "tipo": "FAVORITO",
+        "fecha": "2026-01-09"
+      },
+      {
+        "productoId": 151,
+        "tipo": "FAVORITO",
+        "fecha": "2026-04-19"
+      },
+      {
+        "productoId": 153,
+        "tipo": "FAVORITO",
+        "fecha": "2026-04-29"
+      },
+      {
+        "productoId": 11,
+        "tipo": "FAVORITO",
+        "fecha": "2026-01-12"
+      },
+      {
+        "productoId": 16,
+        "tipo": "CARRITO",
+        "fecha": "2025-12-15"
+      },
+      {
+        "productoId": 116,
+        "tipo": "VISTA",
+        "fecha": "2026-03-25"
+      },
+      {
+        "productoId": 104,
+        "tipo": "CLIC",
+        "fecha": "2025-12-05"
+      },
+      {
+        "productoId": 101,
+        "tipo": "FAVORITO",
+        "fecha": "2026-01-30"
+      },
+      {
+        "productoId": 119,
+        "tipo": "FAVORITO",
+        "fecha": "2026-06-05"
+      },
+      {
+        "productoId": 2,
+        "tipo": "FAVORITO",
+        "fecha": "2026-01-27"
+      },
+      {
+        "productoId": 157,
+        "tipo": "CARRITO",
+        "fecha": "2025-11-16"
+      },
+      {
+        "productoId": 105,
+        "tipo": "CARRITO",
+        "fecha": "2026-05-28"
+      },
+      {
+        "productoId": 159,
+        "tipo": "CARRITO",
+        "fecha": "2026-08-04"
+      },
+      {
+        "productoId": 141,
+        "tipo": "CLIC",
+        "fecha": "2026-04-22"
+      },
+      {
+        "productoId": 105,
+        "tipo": "CLIC",
+        "fecha": "2025-10-11"
+      },
+      {
+        "productoId": 154,
+        "tipo": "FAVORITO",
+        "fecha": "2025-11-20"
+      },
+      {
+        "productoId": 102,
+        "tipo": "CARRITO",
+        "fecha": "2026-07-21"
+      },
+      {
+        "productoId": 7,
+        "tipo": "FAVORITO",
+        "fecha": "2026-04-16"
+      },
+      {
+        "productoId": 16,
+        "tipo": "FAVORITO",
+        "fecha": "2026-03-21"
+      },
+      {
+        "productoId": 106,
+        "tipo": "CLIC",
+        "fecha": "2025-12-31"
+      },
+      {
+        "productoId": 118,
+        "tipo": "VISTA",
+        "fecha": "2025-10-18"
+      },
+      {
+        "productoId": 9,
+        "tipo": "FAVORITO",
+        "fecha": "2026-01-25"
+      },
+      {
+        "productoId": 148,
+        "tipo": "VISTA",
+        "fecha": "2025-12-18"
+      },
+      {
+        "productoId": 108,
+        "tipo": "VISTA",
+        "fecha": "2026-05-05"
+      }
+    ]
+  },
+  {
+    "id": "u3",
+    "nombre": "Familia",
+    "email": "familia@correo.com",
+    "rol": "CLIENTE",
+    "password": "cliente123",
+    "tema": "light",
+    "idioma": "es",
+    "interacciones": [
+      {
+        "productoId": 179,
+        "tipo": "CARRITO",
+        "fecha": "2025-12-10"
+      },
+      {
+        "productoId": 69,
+        "tipo": "CARRITO",
+        "fecha": "2026-03-29"
+      },
+      {
+        "productoId": 82,
+        "tipo": "CARRITO",
+        "fecha": "2026-07-31"
+      },
+      {
+        "productoId": 230,
+        "tipo": "VISTA",
+        "fecha": "2026-03-06"
+      },
+      {
+        "productoId": 164,
+        "tipo": "CARRITO",
+        "fecha": "2026-05-01"
+      },
+      {
+        "productoId": 180,
+        "tipo": "VISTA",
+        "fecha": "2026-06-09"
+      },
+      {
+        "productoId": 96,
+        "tipo": "VISTA",
+        "fecha": "2026-02-09"
+      },
+      {
+        "productoId": 174,
+        "tipo": "CARRITO",
+        "fecha": "2025-12-22"
+      },
+      {
+        "productoId": 238,
+        "tipo": "CARRITO",
+        "fecha": "2026-06-10"
+      },
+      {
+        "productoId": 100,
+        "tipo": "VISTA",
+        "fecha": "2026-01-03"
+      },
+      {
+        "productoId": 237,
+        "tipo": "CARRITO",
+        "fecha": "2026-03-28"
+      },
+      {
+        "productoId": 79,
+        "tipo": "VISTA",
+        "fecha": "2026-08-29"
+      },
+      {
+        "productoId": 99,
+        "tipo": "FAVORITO",
+        "fecha": "2026-07-15"
+      },
+      {
+        "productoId": 91,
+        "tipo": "FAVORITO",
+        "fecha": "2026-02-15"
+      },
+      {
+        "productoId": 67,
+        "tipo": "CARRITO",
+        "fecha": "2025-12-05"
+      },
+      {
+        "productoId": 223,
+        "tipo": "FAVORITO",
+        "fecha": "2026-02-13"
+      },
+      {
+        "productoId": 75,
+        "tipo": "VISTA",
+        "fecha": "2026-01-10"
+      },
+      {
+        "productoId": 235,
+        "tipo": "FAVORITO",
+        "fecha": "2026-08-31"
+      },
+      {
+        "productoId": 230,
+        "tipo": "CARRITO",
+        "fecha": "2026-09-18"
+      },
+      {
+        "productoId": 229,
+        "tipo": "VISTA",
+        "fecha": "2026-06-10"
+      },
+      {
+        "productoId": 62,
+        "tipo": "CLIC",
+        "fecha": "2026-04-06"
+      },
+      {
+        "productoId": 78,
+        "tipo": "VISTA",
+        "fecha": "2026-08-25"
+      },
+      {
+        "productoId": 222,
+        "tipo": "VISTA",
+        "fecha": "2026-03-04"
+      },
+      {
+        "productoId": 85,
+        "tipo": "CARRITO",
+        "fecha": "2025-11-03"
+      },
+      {
+        "productoId": 232,
+        "tipo": "CLIC",
+        "fecha": "2026-02-12"
+      },
+      {
+        "productoId": 233,
+        "tipo": "VISTA",
+        "fecha": "2025-10-15"
+      },
+      {
+        "productoId": 92,
+        "tipo": "VISTA",
+        "fecha": "2026-06-30"
+      },
+      {
+        "productoId": 237,
+        "tipo": "VISTA",
+        "fecha": "2026-06-07"
+      },
+      {
+        "productoId": 61,
+        "tipo": "VISTA",
+        "fecha": "2026-02-04"
+      },
+      {
+        "productoId": 238,
+        "tipo": "CLIC",
+        "fecha": "2026-06-04"
+      },
+      {
+        "productoId": 95,
+        "tipo": "VISTA",
+        "fecha": "2026-07-12"
+      },
+      {
+        "productoId": 167,
+        "tipo": "CARRITO",
+        "fecha": "2026-08-03"
+      },
+      {
+        "productoId": 74,
+        "tipo": "FAVORITO",
+        "fecha": "2026-09-21"
+      },
+      {
+        "productoId": 87,
+        "tipo": "VISTA",
+        "fecha": "2026-08-09"
+      },
+      {
+        "productoId": 75,
+        "tipo": "FAVORITO",
+        "fecha": "2025-10-20"
+      }
+    ]
+  },
+  {
+    "id": "u4",
+    "nombre": "Lector",
+    "email": "lector@correo.com",
+    "rol": "CLIENTE",
+    "password": "cliente123",
+    "tema": "light",
+    "idioma": "es",
+    "interacciones": [
+      {
+        "productoId": 16,
+        "tipo": "CARRITO",
+        "fecha": "2025-11-05"
+      },
+      {
+        "productoId": 216,
+        "tipo": "CLIC",
+        "fecha": "2026-07-05"
+      },
+      {
+        "productoId": 212,
+        "tipo": "VISTA",
+        "fecha": "2026-07-20"
+      },
+      {
+        "productoId": 218,
+        "tipo": "CLIC",
+        "fecha": "2026-06-27"
+      },
+      {
+        "productoId": 202,
+        "tipo": "FAVORITO",
+        "fecha": "2026-09-12"
+      },
+      {
+        "productoId": 182,
+        "tipo": "VISTA",
+        "fecha": "2026-03-02"
+      },
+      {
+        "productoId": 188,
+        "tipo": "VISTA",
+        "fecha": "2026-07-14"
+      },
+      {
+        "productoId": 187,
+        "tipo": "FAVORITO",
+        "fecha": "2026-02-08"
+      },
+      {
+        "productoId": 2,
+        "tipo": "FAVORITO",
+        "fecha": "2025-11-07"
+      },
+      {
+        "productoId": 220,
+        "tipo": "CLIC",
+        "fecha": "2025-10-27"
+      },
+      {
+        "productoId": 1,
+        "tipo": "VISTA",
+        "fecha": "2025-12-31"
+      },
+      {
+        "productoId": 214,
+        "tipo": "VISTA",
+        "fecha": "2026-09-21"
+      },
+      {
+        "productoId": 209,
+        "tipo": "FAVORITO",
+        "fecha": "2026-05-06"
+      },
+      {
+        "productoId": 197,
+        "tipo": "CARRITO",
+        "fecha": "2025-10-19"
+      },
+      {
+        "productoId": 6,
+        "tipo": "VISTA",
+        "fecha": "2026-08-11"
+      },
+      {
+        "productoId": 205,
+        "tipo": "VISTA",
+        "fecha": "2026-06-23"
+      },
+      {
+        "productoId": 217,
+        "tipo": "VISTA",
+        "fecha": "2026-04-01"
+      },
+      {
+        "productoId": 13,
+        "tipo": "VISTA",
+        "fecha": "2026-03-22"
+      },
+      {
+        "productoId": 15,
+        "tipo": "FAVORITO",
+        "fecha": "2026-05-28"
+      },
+      {
+        "productoId": 208,
+        "tipo": "VISTA",
+        "fecha": "2025-10-14"
+      },
+      {
+        "productoId": 182,
+        "tipo": "VISTA",
+        "fecha": "2026-03-06"
+      },
+      {
+        "productoId": 13,
+        "tipo": "FAVORITO",
+        "fecha": "2026-01-29"
+      },
+      {
+        "productoId": 181,
+        "tipo": "CARRITO",
+        "fecha": "2026-07-04"
+      },
+      {
+        "productoId": 196,
+        "tipo": "CLIC",
+        "fecha": "2025-11-03"
+      },
+      {
+        "productoId": 19,
+        "tipo": "VISTA",
+        "fecha": "2026-01-02"
+      },
+      {
+        "productoId": 188,
+        "tipo": "VISTA",
+        "fecha": "2025-10-10"
+      },
+      {
+        "productoId": 216,
+        "tipo": "VISTA",
+        "fecha": "2026-09-06"
+      },
+      {
+        "productoId": 189,
+        "tipo": "FAVORITO",
+        "fecha": "2025-12-15"
+      },
+      {
+        "productoId": 202,
+        "tipo": "VISTA",
+        "fecha": "2026-04-21"
+      },
+      {
+        "productoId": 187,
+        "tipo": "FAVORITO",
+        "fecha": "2026-07-18"
+      },
+      {
+        "productoId": 213,
+        "tipo": "VISTA",
+        "fecha": "2026-04-29"
+      },
+      {
+        "productoId": 199,
+        "tipo": "VISTA",
+        "fecha": "2025-12-13"
+      },
+      {
+        "productoId": 18,
+        "tipo": "VISTA",
+        "fecha": "2026-03-17"
+      },
+      {
+        "productoId": 205,
+        "tipo": "CARRITO",
+        "fecha": "2026-08-20"
+      },
+      {
+        "productoId": 212,
+        "tipo": "VISTA",
+        "fecha": "2026-08-10"
+      }
+    ]
+  }
+]

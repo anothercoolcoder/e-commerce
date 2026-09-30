@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="uptc.viewController.StatisticsViewController" styleClass="shop-root">
+    <top>
+        <HBox styleClass="navbar" spacing="16">
+            <Button text="← Administración" onAction="#back"/>
+            <Label text="Estadísticas" styleClass="brand"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="16" styleClass="page">
+            <HBox spacing="30">
+                <VBox>
+                    <Label text="Ventas"/>
+                    <Label fx:id="sales" styleClass="price-xl"/>
+                </VBox>
+                <VBox>
+                    <Label text="Pedidos"/>
+                    <Label fx:id="orders" styleClass="price-xl"/>
+                </VBox>
+                <VBox>
+                    <Label text="Ticket promedio"/>
+                    <Label fx:id="ticket" styleClass="price-xl"/>
+                </VBox>
+            </HBox>
+            <BarChart fx:id="chart" animated="false" title="Unidades vendidas por categoría" VBox.vgrow="ALWAYS">
+                <xAxis>
+                    <CategoryAxis/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis/>
+                </yAxis>
+            </BarChart>
+        </VBox>
+    </center>
+</BorderPane>

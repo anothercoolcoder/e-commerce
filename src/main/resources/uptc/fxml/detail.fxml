@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="uptc.viewController.DetailViewController" styleClass="shop-root">
+    <VBox spacing="18" maxWidth="700" styleClass="page">
+        <Button text="← Volver a la tienda" onAction="#back"/>
+        <Label fx:id="name" styleClass="title"/>
+        <Label fx:id="description" styleClass="muted" wrapText="true"/>
+        <Label fx:id="price" styleClass="price-xl"/>
+        <Label fx:id="stock"/>
+        <HBox spacing="10">
+            <Spinner fx:id="quantity"/>
+            <Button text="Agregar al carrito" onAction="#add" styleClass="cta-button"/>
+        </HBox>
+        <Label fx:id="status" styleClass="status"/>
+    </VBox>
+</StackPane>

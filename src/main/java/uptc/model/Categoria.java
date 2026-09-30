@@ -1,9 +1,10 @@
 package uptc.model;
 
 public class Categoria {
-    String id;
-    String nombre;
-    String descripcion;
+    private String id;
+    private String nombre;
+    private String descripcion;
+    private String categoriaPadreId;
     
     public Categoria(String id, String nombre, String descripcion) {
         this.id = id;
@@ -30,6 +31,9 @@ public class Categoria {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public String getCategoriaPadreId() { return categoriaPadreId; }
+    public void setCategoriaPadreId(String categoriaPadreId) { this.categoriaPadreId = categoriaPadreId; }
 
     
 }

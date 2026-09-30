@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="uptc.viewController.RegisterViewController" styleClass="auth-root">
+    <VBox alignment="CENTER" spacing="14" maxWidth="380" styleClass="form">
+        <Label text="Crear cuenta" styleClass="title"/>
+        <TextField fx:id="nameField" promptText="Nombre completo"/>
+        <TextField fx:id="emailField" promptText="Correo electrónico"/>
+        <PasswordField fx:id="passwordField" promptText="Contraseña"/>
+        <Button text="Registrarme" onAction="#register" styleClass="cta-button"/>
+        <Button text="Volver al inicio" onAction="#back"/>
+        <Label fx:id="errorLabel" styleClass="error"/>
+    </VBox>
+</StackPane>

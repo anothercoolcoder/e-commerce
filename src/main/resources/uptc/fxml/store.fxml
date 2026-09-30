@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="uptc.viewController.StoreViewController" styleClass="shop-root">
+    <top>
+        <VBox>
+            <HBox styleClass="navbar" spacing="16">
+                <Label text="SHOPTREE" styleClass="brand"/>
+                <TextField fx:id="searchField" HBox.hgrow="ALWAYS" onAction="#search"/>
+                <Button text="Buscar" onAction="#search"/>
+                <Button text="Carrito" onAction="#openCart"/>
+                <Label fx:id="cartBadge" text="0" styleClass="badge"/>
+                <Button text="Mi cuenta" onAction="#openAccount"/>
+                <Button text="Admin" onAction="#openAdmin"/>
+                <ComboBox fx:id="languageBox" prefWidth="70"/>
+                <ToggleButton text="Dark" onAction="#toggleTheme"/>
+                <Label fx:id="userLabel" styleClass="user-label"/>
+                <Button text="Salir" onAction="#logout"/>
+            </HBox>
+            <HBox styleClass="toolbar" spacing="10">
+                <ComboBox fx:id="categoryBox" promptText="Categoría"/>
+                <ComboBox fx:id="sortBox"/>
+                <CheckBox fx:id="availableOnly" onAction="#search"/>
+                <Button text="Limpiar filtros" onAction="#clearFilters"/>
+            </HBox>
+        </VBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true">
+            <VBox spacing="18">
+                <padding>
+                    <Insets top="24" right="24" bottom="24" left="24"/>
+                </padding>
+
+                <!-- Recomendaciones del árbol de decisión para el usuario activo -->
+                <Label text="Recomendados para ti" styleClass="section-title"/>
+                <Label fx:id="recommendedReason" styleClass="muted" wrapText="true"/>
+                <FlowPane fx:id="recommendedGrid" hgap="18" vgap="18" prefWrapLength="1000"/>
+
+                <!-- Catálogo: resultado de la búsqueda y los filtros -->
+                <Label fx:id="storeTitle" styleClass="title"/>
+                <Label text="Envío rápido · Compra segura · Recomendaciones inteligentes" styleClass="muted"/>
+                <Label fx:id="statusLabel" styleClass="status"/>
+                <FlowPane fx:id="productGrid" hgap="18" vgap="18" prefWrapLength="1000"/>
+                <Label fx:id="emptyLabel" visible="false" styleClass="empty"/>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

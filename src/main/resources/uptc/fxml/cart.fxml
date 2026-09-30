@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="uptc.viewController.CartViewController" styleClass="shop-root">
+    <center>
+        <VBox spacing="14" styleClass="page">
+            <Button text="← Seguir comprando" onAction="#back"/>
+            <Label text="Tu carrito" styleClass="title"/>
+            <Label fx:id="empty" text="Tu carrito está vacío" styleClass="empty"/>
+            <VBox fx:id="lines" spacing="10"/>
+        </VBox>
+    </center>
+    <right>
+        <VBox spacing="12" prefWidth="280" styleClass="summary">
+            <Label text="Resumen del pedido" styleClass="section-title"/>
+            <Label text="Subtotal"/>
+            <Label fx:id="subtotal"/>
+            <Label text="Impuestos (19%)"/>
+            <Label fx:id="tax"/>
+            <Label text="Envío"/>
+            <Label fx:id="shipping"/>
+            <Label text="Total" styleClass="section-title"/>
+            <Label fx:id="total" styleClass="price-xl"/>
+            <Button text="Ir a pagar" onAction="#checkout" styleClass="cta-button"/>
+        </VBox>
+    </right>
+</BorderPane>
